@@ -30,6 +30,9 @@
     "*.{js,jsx,ts,tsx}": [
       "eslint --cache --fix",
       "prettier --cache --write"
+    ],
+    "*.{json,md,yml}": [
+      "prettier --cache --write"
     ]
   }
 }
