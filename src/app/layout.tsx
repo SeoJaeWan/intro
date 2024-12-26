@@ -2,6 +2,7 @@ import StyledComponentsRegistry from '@/style/lib/registry';
 import Theme from '@/style/lib/theme';
 import localFont from 'next/font/local';
 import type { Metadata } from 'next';
+import Layout from '@/components/atoms/common/layout';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -24,7 +25,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={pretendard.variable}>
         <StyledComponentsRegistry>
-          <Theme>{children}</Theme>
+          <Theme>
+            <Layout>{children}</Layout>
+          </Theme>
         </StyledComponentsRegistry>
       </body>
     </html>

@@ -11,6 +11,7 @@ const Global = styled.createGlobalStyle`
     margin: 0;
 
     font-family: var(--font-pretendard);
+    color: ${(props) => props.theme.color.text};
   }
 
   a {

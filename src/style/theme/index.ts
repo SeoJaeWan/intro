@@ -1,4 +1,8 @@
-export const color = {};
+export const color = {
+  background: '#0e100f',
+  text: '#f9f5ea',
+  star: '#eccc68',
+};
 
 export const media = {
   mobile: '767px',
