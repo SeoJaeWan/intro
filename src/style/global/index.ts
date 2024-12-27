@@ -6,6 +6,8 @@ const Global = styled.createGlobalStyle`
   }
 
   * {
+    z-index: 1;
+
     box-sizing: border-box;
     padding: 0;
     margin: 0;
@@ -32,6 +34,10 @@ const Global = styled.createGlobalStyle`
     background: none;
 
     cursor: pointer;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
   }
 `;
 

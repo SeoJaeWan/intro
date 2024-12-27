@@ -1,10 +1,9 @@
+import Hero from '@/components/molecules/home/hero';
+
 const HomeTemplate = () => {
   return (
     <div>
-      <section>
-        <h2>Never calling it end, always enjoying updates</h2>
-        <p>서재완 - 프론트엔드 개발자</p>
-      </section>
+      <Hero />
 
       <section>
         <h2>About SEOJAEWAN</h2>
