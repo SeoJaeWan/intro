@@ -1,13 +1,43 @@
 'use client';
+import { useEffect, useRef } from 'react';
 import MoreStyle from './more.style';
+import Percent from '@/utils/percent';
 
 const More = () => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const layoutRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (scrollRef.current && layoutRef.current) {
+        const scroll = scrollRef.current;
+        const layout = layoutRef.current;
+
+        const { bottom, height } = scroll.getBoundingClientRect();
+
+        const max = height;
+        const min = window.innerHeight;
+
+        const percent = Math.max(0, Math.min(100, Percent(max, min, bottom)));
+        const translateX = Math.max(0, Math.min(200, 2 * percent));
+
+        layout.style.transform = `translateX(-${translateX}vw)`;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
-    <MoreStyle.Container>
+    <MoreStyle.Container ref={scrollRef}>
       <h2 className="a11y">More SEOJAEWAN</h2>
 
       <MoreStyle.Box>
-        <MoreStyle.Layout>
+        <MoreStyle.Layout ref={layoutRef}>
           <MoreStyle.Article>
             <h3>Skill</h3>
 

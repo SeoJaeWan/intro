@@ -21,8 +21,7 @@ const Layout = styled.div`
   display: flex;
 
   width: 300vw;
-
-  transform: translateX(-100vw);
+  transition: transform 0.5s;
 `;
 
 const Article = styled.article`
