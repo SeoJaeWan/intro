@@ -41,7 +41,7 @@ interface ContainerProps {
 const Container = styled.div<ContainerProps>`
   position: relative;
 
-  padding: 5px 24px;
+  padding: 15px 24px;
 
   span {
     opacity: 0;

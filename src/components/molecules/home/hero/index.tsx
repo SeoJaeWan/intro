@@ -1,13 +1,13 @@
 'use client';
 
-import Title from '@/components/atoms/home/title';
+import HeroTitle from '@/components/atoms/home/heroTItle';
 import HeroStyle from './hero.style';
 import Information from '@/components/atoms/common/information';
 
 const Hero = () => {
   return (
     <HeroStyle.Container>
-      <Title />
+      <HeroTitle />
 
       <HeroStyle.Info>
         <Information delay={4}>
