@@ -5,11 +5,11 @@ import {
   // useRef,
   useState,
 } from 'react';
-import TitleStyle from './title.style';
+import HeroTitleStyle from './heroTitle.style';
 
 const PercentText = ['p', 'd', 'a'];
 
-const Title = () => {
+const HeroTitle = () => {
   const [percent, setPercent] = useState(0);
   // const spinRef = useRef<HTMLSpanElement>(null);
 
@@ -44,52 +44,52 @@ const Title = () => {
   }, []);
 
   return (
-    <TitleStyle.Container>
+    <HeroTitleStyle.Container>
       <h2 className="a11y">Naver End, Ever Update</h2>
-      <TitleStyle.Title aria-hidden="true">
-        <TitleStyle.Line>
-          <TitleStyle.FadeIn $percent={percent} $delay={0.1}>
+      <HeroTitleStyle.Title aria-hidden="true">
+        <HeroTitleStyle.Line>
+          <HeroTitleStyle.FadeIn $percent={percent} $delay={0.1}>
             N
-          </TitleStyle.FadeIn>
-          <TitleStyle.FadeIn $percent={percent} $delay={1}>
+          </HeroTitleStyle.FadeIn>
+          <HeroTitleStyle.FadeIn $percent={percent} $delay={1}>
             e
-          </TitleStyle.FadeIn>
-          <TitleStyle.FadeIn $percent={percent} $delay={0.4}>
+          </HeroTitleStyle.FadeIn>
+          <HeroTitleStyle.FadeIn $percent={percent} $delay={0.4}>
             v
-          </TitleStyle.FadeIn>
-          <TitleStyle.FadeIn $percent={percent} $delay={1.3}>
+          </HeroTitleStyle.FadeIn>
+          <HeroTitleStyle.FadeIn $percent={percent} $delay={1.3}>
             e
-          </TitleStyle.FadeIn>
-          <TitleStyle.FadeIn $percent={percent} $delay={2}>
+          </HeroTitleStyle.FadeIn>
+          <HeroTitleStyle.FadeIn $percent={percent} $delay={2}>
             r
-          </TitleStyle.FadeIn>
+          </HeroTitleStyle.FadeIn>
           &nbsp;
-          <TitleStyle.FadeIn $percent={percent} $delay={0.5}>
+          <HeroTitleStyle.FadeIn $percent={percent} $delay={0.5}>
             e
-          </TitleStyle.FadeIn>
-          <TitleStyle.FadeIn $percent={percent} $delay={1.35}>
+          </HeroTitleStyle.FadeIn>
+          <HeroTitleStyle.FadeIn $percent={percent} $delay={1.35}>
             n
-          </TitleStyle.FadeIn>
-          <TitleStyle.FadeIn $percent={percent} $delay={0.7}>
+          </HeroTitleStyle.FadeIn>
+          <HeroTitleStyle.FadeIn $percent={percent} $delay={0.7}>
             d
-          </TitleStyle.FadeIn>
-          <TitleStyle.FadeIn $percent={percent} $delay={2.4}>
+          </HeroTitleStyle.FadeIn>
+          <HeroTitleStyle.FadeIn $percent={percent} $delay={2.4}>
             ,
-          </TitleStyle.FadeIn>
-        </TitleStyle.Line>
-        <TitleStyle.Line>
+          </HeroTitleStyle.FadeIn>
+        </HeroTitleStyle.Line>
+        <HeroTitleStyle.Line>
           E
-          <TitleStyle.FadeIn $percent={percent} $delay={0.5}>
+          <HeroTitleStyle.FadeIn $percent={percent} $delay={0.5}>
             v
-          </TitleStyle.FadeIn>
-          <TitleStyle.FadeIn $percent={percent} $delay={1.8}>
+          </HeroTitleStyle.FadeIn>
+          <HeroTitleStyle.FadeIn $percent={percent} $delay={1.8}>
             e
-          </TitleStyle.FadeIn>
-          <TitleStyle.FadeIn $percent={percent} $delay={0.3}>
+          </HeroTitleStyle.FadeIn>
+          <HeroTitleStyle.FadeIn $percent={percent} $delay={0.3}>
             r
-          </TitleStyle.FadeIn>
+          </HeroTitleStyle.FadeIn>
           &nbsp;
-          <TitleStyle.Lightning $percent={percent}>
+          <HeroTitleStyle.Lightning $percent={percent}>
             <span>u</span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 162.04 342.54">
               <defs>
@@ -110,32 +110,32 @@ const Title = () => {
                 />
               </g>
             </svg>
-          </TitleStyle.Lightning>
+          </HeroTitleStyle.Lightning>
           {percentText.map((char, idx) => (
-            <TitleStyle.Count key={idx}>
+            <HeroTitleStyle.Count key={idx}>
               {percent !== 100 ? (
                 <Fragment key={idx}>{char}</Fragment>
               ) : (
-                <TitleStyle.FadeIn
+                <HeroTitleStyle.FadeIn
                   key={idx}
                   $delay={idx * 0.2}
                   $percent={percent}
                 >
                   {PercentText[idx]}
-                </TitleStyle.FadeIn>
+                </HeroTitleStyle.FadeIn>
               )}
-            </TitleStyle.Count>
+            </HeroTitleStyle.Count>
           ))}
-          <TitleStyle.FadeIn $percent={percent} $delay={0.3}>
+          <HeroTitleStyle.FadeIn $percent={percent} $delay={0.3}>
             t
-          </TitleStyle.FadeIn>
-          <TitleStyle.FadeIn $percent={percent} $delay={0.6}>
+          </HeroTitleStyle.FadeIn>
+          <HeroTitleStyle.FadeIn $percent={percent} $delay={0.6}>
             e
-          </TitleStyle.FadeIn>
-        </TitleStyle.Line>
-      </TitleStyle.Title>
-    </TitleStyle.Container>
+          </HeroTitleStyle.FadeIn>
+        </HeroTitleStyle.Line>
+      </HeroTitleStyle.Title>
+    </HeroTitleStyle.Container>
   );
 };
 
-export default Title;
+export default HeroTitle;

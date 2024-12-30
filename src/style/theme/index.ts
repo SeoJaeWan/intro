@@ -1,7 +1,10 @@
 export const color = {
   background: '#0e100f',
   text: '#f9f5ea',
+  backgroundText: '#44d62c',
   star: '#eccc68',
+
+  line: '#f9f5ea',
 };
 
 export const media = {

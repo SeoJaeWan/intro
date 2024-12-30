@@ -1,3 +1,4 @@
+import About from '@/components/molecules/home/about';
 import Hero from '@/components/molecules/home/hero';
 
 const HomeTemplate = () => {
@@ -5,17 +6,7 @@ const HomeTemplate = () => {
     <div>
       <Hero />
 
-      <section>
-        <h2>About SEOJAEWAN</h2>
-
-        <p>
-          2년차 개발자로 스타트업에서 웹 서비스를 개발하였습니다. 작은 규모의
-          팀에 팀장으로 개발을 시작해서 클라이언트와의 소통과 팀 내 개발 일정을
-          책임졌던 경험이 있습니다. <br />
-          중복을 최소화하고, 직관적이고 이해하기 쉬운 코드를 작성하는 것이
-          목표입니다.
-        </p>
-      </section>
+      <About />
 
       <section>
         <h2>More SEOJAEWAN</h2>

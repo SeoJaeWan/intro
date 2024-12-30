@@ -33,8 +33,6 @@ const Title = styled.div`
 
   width: 100%;
 
-  padding: 0 20px;
-
   font-size: ${(props) => `calc(14vw + ${props.theme.font(16)})`};
   letter-spacing: -2px;
   font-weight: 500;
@@ -611,7 +609,7 @@ const FadeScrew = styled.span<FadeScrewProps>`
     `};
 `;
 
-const TitleStyle = {
+const HeroTitleStyle = {
   Container,
   Title,
   Line,
@@ -629,4 +627,4 @@ const TitleStyle = {
   FadeScrew,
 };
 
-export default TitleStyle;
+export default HeroTitleStyle;

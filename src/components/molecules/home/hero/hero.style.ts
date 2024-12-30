@@ -1,6 +1,7 @@
+import Section from '@/components/atoms/common/section/section.style';
 import styled from 'styled-components';
 
-const Container = styled.div`
+const Container = styled(Section)`
   position: relative;
 
   display: flex;
@@ -14,7 +15,7 @@ const Container = styled.div`
 const Info = styled.div`
   position: absolute;
   bottom: 50px;
-  left: 50px;
+  left: 100px;
 
   font-size: ${(props) => props.theme.font(24)};
   font-weight: bold;
