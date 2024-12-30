@@ -1,19 +1,24 @@
 'use client';
-import { Fragment, useEffect, useRef, useState } from 'react';
+import {
+  Fragment,
+  useEffect,
+  // useRef,
+  useState,
+} from 'react';
 import TitleStyle from './title.style';
 
 const PercentText = ['p', 'd', 'a'];
 
 const Title = () => {
   const [percent, setPercent] = useState(0);
-  const spinRef = useRef<HTMLSpanElement>(null);
+  // const spinRef = useRef<HTMLSpanElement>(null);
 
-  const handleSpinAnimationEnd = () => {
-    const spanElement = spinRef.current;
+  // const handleSpinAnimationEnd = () => {
+  //   const spanElement = spinRef.current;
 
-    if (!spanElement) return;
-    spanElement.classList.toggle('alternate');
-  };
+  //   if (!spanElement) return;
+  //   spanElement.classList.toggle('alternate');
+  // };
 
   const percentText = percent.toString().padStart(3, '0').split('');
 
@@ -40,39 +45,49 @@ const Title = () => {
 
   return (
     <TitleStyle.Container>
-      <TitleStyle.Title>
+      <h2 className="a11y">Naver End, Ever Update</h2>
+      <TitleStyle.Title aria-hidden="true">
         <TitleStyle.Line>
-          <TitleStyle.Rotate $percent={percent}>N</TitleStyle.Rotate>
-          <TitleStyle.FadeIn $percent={percent}>e</TitleStyle.FadeIn>
-          <TitleStyle.Rotate3D $percent={percent}>v</TitleStyle.Rotate3D>
-          <TitleStyle.FadeDown $percent={percent}>e</TitleStyle.FadeDown>
-          <TitleStyle.FadeScrew $percent={percent} $delay={0.6}>
+          <TitleStyle.FadeIn $percent={percent} $delay={0.1}>
+            N
+          </TitleStyle.FadeIn>
+          <TitleStyle.FadeIn $percent={percent} $delay={1}>
+            e
+          </TitleStyle.FadeIn>
+          <TitleStyle.FadeIn $percent={percent} $delay={0.4}>
+            v
+          </TitleStyle.FadeIn>
+          <TitleStyle.FadeIn $percent={percent} $delay={1.3}>
+            e
+          </TitleStyle.FadeIn>
+          <TitleStyle.FadeIn $percent={percent} $delay={2}>
             r
-          </TitleStyle.FadeScrew>
+          </TitleStyle.FadeIn>
           &nbsp;
-          <TitleStyle.RotateCircle $percent={percent}>
-            <span>e</span>
-          </TitleStyle.RotateCircle>
-          <TitleStyle.TextRotate $percent={percent}>
-            <span>i</span>
-            <span>n</span>
-          </TitleStyle.TextRotate>
-          <TitleStyle.Bounce $percent={percent} $delay={0.9}>
-            <span data-text={'e'}>d</span>
-          </TitleStyle.Bounce>
-          <TitleStyle.FadeIn $percent={percent}>,</TitleStyle.FadeIn>
+          <TitleStyle.FadeIn $percent={percent} $delay={0.5}>
+            e
+          </TitleStyle.FadeIn>
+          <TitleStyle.FadeIn $percent={percent} $delay={1.35}>
+            n
+          </TitleStyle.FadeIn>
+          <TitleStyle.FadeIn $percent={percent} $delay={0.7}>
+            d
+          </TitleStyle.FadeIn>
+          <TitleStyle.FadeIn $percent={percent} $delay={2.4}>
+            ,
+          </TitleStyle.FadeIn>
         </TitleStyle.Line>
         <TitleStyle.Line>
           E
-          <TitleStyle.Bounce $percent={percent} $delay={0.5}>
-            <span data-text={'v'}>v</span>
-          </TitleStyle.Bounce>
-          <TitleStyle.Bounce $percent={percent} $delay={0.8}>
-            <span data-text={'e'}>e</span>
-          </TitleStyle.Bounce>
-          <TitleStyle.FadeScrew $percent={percent} $delay={0.3}>
+          <TitleStyle.FadeIn $percent={percent} $delay={0.5}>
+            v
+          </TitleStyle.FadeIn>
+          <TitleStyle.FadeIn $percent={percent} $delay={1.8}>
+            e
+          </TitleStyle.FadeIn>
+          <TitleStyle.FadeIn $percent={percent} $delay={0.3}>
             r
-          </TitleStyle.FadeScrew>
+          </TitleStyle.FadeIn>
           &nbsp;
           <TitleStyle.Lightning $percent={percent}>
             <span>u</span>
@@ -101,22 +116,22 @@ const Title = () => {
               {percent !== 100 ? (
                 <Fragment key={idx}>{char}</Fragment>
               ) : (
-                <TitleStyle.Bounce
+                <TitleStyle.FadeIn
                   key={idx}
                   $delay={idx * 0.2}
                   $percent={percent}
                 >
-                  <span data-text={char}>{PercentText[idx]}</span>
-                </TitleStyle.Bounce>
+                  {PercentText[idx]}
+                </TitleStyle.FadeIn>
               )}
             </TitleStyle.Count>
           ))}
-          <TitleStyle.Spin $percent={percent}>
-            <span ref={spinRef} onAnimationEnd={handleSpinAnimationEnd}>
-              t
-            </span>
-          </TitleStyle.Spin>
-          <TitleStyle.FadeLeft $percent={percent}>e</TitleStyle.FadeLeft>
+          <TitleStyle.FadeIn $percent={percent} $delay={0.3}>
+            t
+          </TitleStyle.FadeIn>
+          <TitleStyle.FadeIn $percent={percent} $delay={0.6}>
+            e
+          </TitleStyle.FadeIn>
         </TitleStyle.Line>
       </TitleStyle.Title>
     </TitleStyle.Container>

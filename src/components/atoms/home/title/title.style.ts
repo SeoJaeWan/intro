@@ -2,6 +2,7 @@ import styled, { css, keyframes } from 'styled-components';
 
 interface AnimationProps {
   $percent: number;
+  $delay: number;
 }
 
 const FadeInAni = keyframes`
@@ -26,7 +27,7 @@ const Container = styled.div`
   animation: ${FadeInAni} 2s cubic-bezier(0.42, 0, 0.02, 0.99) 2s forwards;
 `;
 
-const Title = styled.h2`
+const Title = styled.div`
   display: flex;
   flex-direction: column;
 
@@ -333,6 +334,24 @@ const Rotate = styled.span<AnimationProps>`
     `};
 `;
 
+const FadeAni = keyframes`
+  0% {
+    opacity: 0;
+  }
+
+  25% {
+    opacity: .1;
+  }
+
+  75% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+`;
+
 const FadeIn = styled.span<AnimationProps>`
   display: inline-block;
 
@@ -340,7 +359,7 @@ const FadeIn = styled.span<AnimationProps>`
   ${(props) =>
     props.$percent === 100 &&
     css`
-      animation: ${FadeInAni} 2s cubic-bezier(0.42, 0, 0.02, 0.99) 0.5s forwards;
+      animation: ${FadeAni} 2s ease-in-out ${props.$delay}s forwards;
     `}
 `;
 
