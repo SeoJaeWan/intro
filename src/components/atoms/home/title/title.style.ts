@@ -4,6 +4,16 @@ interface AnimationProps {
   $percent: number;
 }
 
+const FadeInAni = keyframes`
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+`;
+
 const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -11,6 +21,9 @@ const Container = styled.div`
 
   width: 100%;
   height: 100%;
+  opacity: 0;
+
+  animation: ${FadeInAni} 2s cubic-bezier(0.42, 0, 0.02, 0.99) 2s forwards;
 `;
 
 const Title = styled.h2`
@@ -99,14 +112,14 @@ const Spin = styled.span<SpinProps>`
 
     visibility: ${(props) => (props.$percent === 100 ? 'visible' : 'hidden')};
 
-    transform: rotateX(900deg) perspective(100px);
-    animation: ${spinChar} 3.5s cubic-bezier(0.2, 0.98, 1, 1) forwards;
+    transform: rotate(0deg) perspective(100px);
+    animation: ${alternateSpinChar} 3.5s cubic-bezier(0.2, 0.98, 1, 1) 2.5s
+      forwards;
   }
 
   span.alternate {
-    transform: rotate(0deg) perspective(100px);
-    animation: ${alternateSpinChar} 3.5s cubic-bezier(0.2, 0.98, 1, 1) 2s
-      forwards;
+    transform: rotateX(900deg) perspective(100px);
+    animation: ${spinChar} 3.5s cubic-bezier(0.2, 0.98, 1, 1) 1s forwards;
   }
 
   &::before {
@@ -318,16 +331,6 @@ const Rotate = styled.span<AnimationProps>`
       animation: ${RotateAni} 1.5s cubic-bezier(0.42, 0, 0.02, 0.99) 0.1s
         forwards;
     `};
-`;
-
-const FadeInAni = keyframes`
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
 `;
 
 const FadeIn = styled.span<AnimationProps>`

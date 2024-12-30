@@ -1,17 +1,17 @@
 'use client';
-import { AnimationEvent, Fragment, useEffect, useState } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import TitleStyle from './title.style';
 
 const PercentText = ['p', 'd', 'a'];
 
 const Title = () => {
   const [percent, setPercent] = useState(0);
+  const spinRef = useRef<HTMLSpanElement>(null);
 
-  const handleSpinAnimationEnd = (e: AnimationEvent<HTMLSpanElement>) => {
-    const spanElement = e.target as HTMLSpanElement;
+  const handleSpinAnimationEnd = () => {
+    const spanElement = spinRef.current;
 
-    console.log('end?');
-
+    if (!spanElement) return;
     spanElement.classList.toggle('alternate');
   };
 
@@ -112,7 +112,9 @@ const Title = () => {
             </TitleStyle.Count>
           ))}
           <TitleStyle.Spin $percent={percent}>
-            <span onAnimationEnd={handleSpinAnimationEnd}>t</span>
+            <span ref={spinRef} onAnimationEnd={handleSpinAnimationEnd}>
+              t
+            </span>
           </TitleStyle.Spin>
           <TitleStyle.FadeLeft $percent={percent}>e</TitleStyle.FadeLeft>
         </TitleStyle.Line>
