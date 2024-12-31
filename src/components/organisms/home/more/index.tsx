@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react';
 import MoreStyle from './more.style';
 import Percent from '@/utils/percent';
 import Growth from '@/components/molecules/home/more/growth';
+import Community from '@/components/molecules/home/more/community';
 
 const More = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -14,15 +15,23 @@ const More = () => {
         const scroll = scrollRef.current;
         const layout = layoutRef.current;
 
+        const contentWidth = layout.getBoundingClientRect().width;
+
         const { bottom, height } = scroll.getBoundingClientRect();
+
+        scroll.style.height = `${contentWidth / 2}px`;
 
         const max = height;
         const min = window.innerHeight;
+        const viewWidth = window.innerWidth;
 
         const percent = Math.max(0, Math.min(100, Percent(max, min, bottom)));
-        const translateX = Math.max(0, Math.min(200, 2 * percent));
+        const translateX = Math.max(
+          0,
+          Math.min(contentWidth, contentWidth * (percent / 100) - viewWidth),
+        );
 
-        layout.style.transform = `translateX(-${translateX}vw)`;
+        layout.style.transform = `translateX(calc(-${translateX}px))`;
       }
     };
 
@@ -44,22 +53,7 @@ const More = () => {
           </MoreStyle.Article>
 
           <MoreStyle.Article>
-            <h3>Communication</h3>
-
-            <p>
-              좋은 서비스를 완성하기 위해서는 팀원과의 소통과 협업이 중요하다고
-              생각해요. 혼자 앞서나가는 것이 아닌 전체의 전투력 상승에 관심이
-              많습니다.
-            </p>
-          </MoreStyle.Article>
-
-          <MoreStyle.Article>
-            <h3>Job</h3>
-
-            <p>
-              개발 말고도 해외(일본)여행, 평생을 함께할 취미를 찾기 위해서
-              즐거운 여정을 하고 있습니다.
-            </p>
+            <Community />
           </MoreStyle.Article>
         </MoreStyle.Layout>
       </MoreStyle.Box>

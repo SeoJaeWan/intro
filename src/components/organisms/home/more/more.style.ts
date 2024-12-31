@@ -20,16 +20,20 @@ const Box = styled.div`
 const Layout = styled.div`
   display: flex;
 
-  width: 300vw;
+  width: fit-content;
   transition: transform 0.5s;
 `;
 
 const Article = styled.article`
-  width: 100vw;
+  width: fit-content;
   height: 100vh;
 
   &:first-child {
     padding-left: 150px;
+  }
+
+  &:last-child {
+    padding-right: 150px;
   }
 `;
 

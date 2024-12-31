@@ -62,7 +62,7 @@ const Container = styled.div`
   justify-content: flex-start;
   align-items: flex-end;
 
-  width: 100%;
+  width: 100vw;
   height: 100%;
 
   padding-bottom: 200px;

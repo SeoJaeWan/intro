@@ -8,9 +8,9 @@ export const color = {
 
   box1: '#eb2f06',
   box2: '#fa8231',
-  box3: '#f78fb3',
-  box4: '#3dc1d3',
-  box5: '#2ed573',
+  box3: '#FF6EC7',
+  box4: '#00BFFF',
+  box5: '#39FF14',
 
   boxShadow: 'rgba(0, 0, 0, 0.2)',
 

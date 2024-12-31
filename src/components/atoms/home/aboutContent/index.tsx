@@ -1,12 +1,13 @@
 import useObserver from '@/hooks/useObserver';
 import AboutContentStyle from './aboutContent.style';
+import WordSplit from '@/utils/wordSplit';
 
-const firstEvent = '두려움보다는 도전과 성장의 즐거움'.split('');
+const firstEvent = WordSplit('두려움보다는 도전과 성장의 즐거움');
 
-const secondEvent = '끊임없이\u00A0발전하는\u00A0밑거름'.split('');
+const secondEvent = WordSplit('끊임없이\u00A0발전하는\u00A0밑거름');
 
 const AboutContent = () => {
-  const contentRef = useObserver<HTMLParagraphElement>();
+  const contentRef = useObserver<HTMLParagraphElement>({ threshold: 1 });
 
   return (
     <AboutContentStyle.Container ref={contentRef}>
