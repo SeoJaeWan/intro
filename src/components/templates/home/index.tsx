@@ -1,6 +1,6 @@
 import About from '@/components/molecules/home/about';
 import Hero from '@/components/molecules/home/hero';
-import More from '@/components/molecules/home/more';
+import More from '@/components/organisms/home/more';
 
 const HomeTemplate = () => {
   return (

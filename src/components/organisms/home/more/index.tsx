@@ -2,6 +2,7 @@
 import { useEffect, useRef } from 'react';
 import MoreStyle from './more.style';
 import Percent from '@/utils/percent';
+import Growth from '@/components/molecules/home/more/growth';
 
 const More = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -39,14 +40,7 @@ const More = () => {
       <MoreStyle.Box>
         <MoreStyle.Layout ref={layoutRef}>
           <MoreStyle.Article>
-            <h3>Skill</h3>
-
-            <p>
-              낯선 기능에 설렘을 가지며 React와 Next.js 환경에서 즐거운 개발을
-              하고 있습니다. <br />
-              개발자가 편환 환경에서 개발을 할 수 있을지 즐거운 고민을 하고
-              있습니다.
-            </p>
+            <Growth />
           </MoreStyle.Article>
 
           <MoreStyle.Article>

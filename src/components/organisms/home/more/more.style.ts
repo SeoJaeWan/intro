@@ -27,6 +27,10 @@ const Layout = styled.div`
 const Article = styled.article`
   width: 100vw;
   height: 100vh;
+
+  &:first-child {
+    padding-left: 150px;
+  }
 `;
 
 const MoreStyle = {
