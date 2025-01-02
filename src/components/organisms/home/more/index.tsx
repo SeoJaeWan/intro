@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import MoreStyle from './more.style';
 import Percent from '@/utils/percent';
 import Growth from '@/components/molecules/home/more/growth';
@@ -10,22 +10,28 @@ const More = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const layoutRef = useRef<HTMLDivElement>(null);
 
+  const getTrigger = useCallback(() => {
+    const trigger = parseInt(media.tablet, 10);
+    const width = window.innerWidth;
+
+    return trigger > width;
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       if (scrollRef.current && layoutRef.current) {
         const scroll = scrollRef.current;
         const layout = layoutRef.current;
 
-        const trigger = parseInt(media.tablet, 10);
-        const width = window.innerWidth;
+        const trigger = getTrigger();
 
-        if (trigger > width) return;
+        if (trigger) {
+          return;
+        }
 
         const contentWidth = layout.getBoundingClientRect().width;
 
         const { bottom, height } = scroll.getBoundingClientRect();
-
-        scroll.style.height = `${contentWidth / 2}px`;
 
         const max = height;
         const min = window.innerHeight;
@@ -37,8 +43,6 @@ const More = () => {
           Math.min(contentWidth, contentWidth * (percent / 100) - viewWidth),
         );
 
-        console.log(translateX);
-
         layout.style.transform = `translateX(-${translateX}px)`;
       }
     };
@@ -48,7 +52,33 @@ const More = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [getTrigger]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (scrollRef.current && layoutRef.current) {
+        const scroll = scrollRef.current;
+        const layout = layoutRef.current;
+
+        const trigger = getTrigger();
+
+        if (trigger) {
+          scroll.style.height = 'auto';
+          layout.style.transform = 'translateX(0)';
+        } else {
+          const contentWidth = layout.getBoundingClientRect().width;
+
+          scroll.style.height = `${contentWidth / 2}px`;
+        }
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [getTrigger]);
 
   return (
     <MoreStyle.Container ref={scrollRef}>

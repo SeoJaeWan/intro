@@ -5,6 +5,11 @@ const Global = styled.createGlobalStyle`
   body {
   }
 
+  body {
+    width: 100vw;
+    overflow-x: hidden;
+  }
+
   * {
     z-index: 1;
 
@@ -37,7 +42,16 @@ const Global = styled.createGlobalStyle`
   }
 
   ::-webkit-scrollbar {
-    display: none;
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: ${(props) => props.theme.color.background};
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: ${(props) => props.theme.color.white};
+    border-radius: 10px;
   }
 
   .a11y {
