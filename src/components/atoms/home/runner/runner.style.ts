@@ -32,7 +32,7 @@ const Runner = styled(Image)`
   aspect-ratio: 1146/1236;
 
   &.show {
-    animation: ${runnerAni} 1.5s linear forwards;
+    animation: ${runnerAni} 1s linear forwards;
   }
 `;
 
