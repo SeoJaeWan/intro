@@ -4,6 +4,7 @@ import ShowChar from '@/components/atoms/home/showChar';
 import Box from '@/components/atoms/home/box';
 import useObserver from '@/hooks/useObserver';
 import Runner from '@/components/atoms/home/runner';
+import Rising from '@/components/atoms/home/rising';
 
 const content1 = ['좋은\u00A0', '서비스를\u00A0'];
 
@@ -81,11 +82,13 @@ const Community = () => {
           </ShowChar>
         ))}
 
-        {content6.map((char, index) => (
-          <ShowChar animation={'zoomOut'} key={index}>
-            {char}
-          </ShowChar>
-        ))}
+        <Rising>
+          {content6.map((char, index) => (
+            <ShowChar animation={'zoomOut'} key={index}>
+              {char}
+            </ShowChar>
+          ))}
+        </Rising>
 
         {content7.map((char, index) => (
           <ShowChar

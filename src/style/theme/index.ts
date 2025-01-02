@@ -16,6 +16,7 @@ export const color = {
 
   black: '#0e100f',
   white: '#ffffff',
+  red: '#eb2f06',
 };
 
 export const media = {
