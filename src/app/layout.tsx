@@ -16,14 +16,21 @@ const pretendard = localFont({
   variable: '--font-pretendard',
 });
 
+const notoMono = localFont({
+  src: './fonts/RobotoMono-VariableFont_wght.ttf',
+  display: 'swap',
+  weight: '45 920',
+  variable: '--font-mono',
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={pretendard.variable}>
+    <html lang="ko">
+      <body className={`${pretendard.variable} ${notoMono.variable}`}>
         <StyledComponentsRegistry>
           <Theme>
             <Layout>{children}</Layout>

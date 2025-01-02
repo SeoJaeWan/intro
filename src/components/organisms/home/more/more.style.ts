@@ -6,6 +6,17 @@ const Container = styled(Section)`
   height: 300vh;
 
   padding: 0;
+
+  @media (max-width: ${(props) => props.theme.media.tablet}) {
+    min-height: auto;
+    height: auto;
+
+    padding: 0 50px;
+  }
+
+  @media (max-width: ${(props) => props.theme.media.tablet}) {
+    padding: 0 20px;
+  }
 `;
 
 const Box = styled.div`
@@ -15,6 +26,12 @@ const Box = styled.div`
   overflow: hidden;
 
   width: 100vw;
+
+  @media (max-width: ${(props) => props.theme.media.tablet}) {
+    position: relative;
+
+    width: 100%;
+  }
 `;
 
 const Layout = styled.div`
@@ -22,6 +39,12 @@ const Layout = styled.div`
 
   width: fit-content;
   transition: transform 0.5s;
+
+  @media (max-width: ${(props) => props.theme.media.tablet}) {
+    flex-direction: column;
+
+    width: 100%;
+  }
 `;
 
 const Article = styled.article`
@@ -34,6 +57,19 @@ const Article = styled.article`
 
   &:last-child {
     padding-right: 150px;
+  }
+
+  @media (max-width: ${(props) => props.theme.media.tablet}) {
+    width: 100%;
+    height: auto;
+
+    &:first-child {
+      padding-left: 0;
+    }
+
+    &:last-child {
+      padding-right: 0;
+    }
   }
 `;
 

@@ -69,6 +69,10 @@ const Container = styled.p`
         rotateColor(props.theme.color.text, props.theme.color.backgroundText)};
     }
   }
+
+  @media (max-width: ${(props) => props.theme.media.mobile}) {
+    font-size: 8vw;
+  }
 `;
 
 const AboutContentStyle = {

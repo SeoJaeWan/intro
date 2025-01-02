@@ -4,6 +4,7 @@ import MoreStyle from './more.style';
 import Percent from '@/utils/percent';
 import Growth from '@/components/molecules/home/more/growth';
 import Community from '@/components/molecules/home/more/community';
+import { media } from '@/style/theme';
 
 const More = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -14,6 +15,11 @@ const More = () => {
       if (scrollRef.current && layoutRef.current) {
         const scroll = scrollRef.current;
         const layout = layoutRef.current;
+
+        const trigger = parseInt(media.tablet, 10);
+        const width = window.innerWidth;
+
+        if (trigger > width) return;
 
         const contentWidth = layout.getBoundingClientRect().width;
 
@@ -31,7 +37,9 @@ const More = () => {
           Math.min(contentWidth, contentWidth * (percent / 100) - viewWidth),
         );
 
-        layout.style.transform = `translateX(calc(-${translateX}px))`;
+        console.log(translateX);
+
+        layout.style.transform = `translateX(-${translateX}px)`;
       }
     };
 

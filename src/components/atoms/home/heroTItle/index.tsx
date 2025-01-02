@@ -11,16 +11,16 @@ const PercentText = ['p', 'd', 'a'];
 
 const HeroTitle = () => {
   const [percent, setPercent] = useState(0);
-  // const spinRef = useRef<HTMLSpanElement>(null);
-
-  // const handleSpinAnimationEnd = () => {
-  //   const spanElement = spinRef.current;
-
-  //   if (!spanElement) return;
-  //   spanElement.classList.toggle('alternate');
-  // };
+  const [isAnimationEnd, setIsAnimationEnd] = useState(false);
 
   const percentText = percent.toString().padStart(3, '0').split('');
+
+  const handleFreeFixed = () => {
+    const htmlEl = document.querySelector('html');
+
+    htmlEl?.classList.remove('fixed');
+    setIsAnimationEnd(true);
+  };
 
   useEffect(() => {
     const interval = setTimeout(() => {
@@ -38,10 +38,30 @@ const HeroTitle = () => {
       window.requestAnimationFrame(step);
     }, 3000);
 
+    const htmlEl = document.querySelector('html');
+
+    htmlEl?.classList.add('fixed');
+
     return () => {
       clearTimeout(interval);
     };
   }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsAnimationEnd(false);
+      }
+    };
+
+    if (isAnimationEnd) {
+      window.addEventListener('scroll', handleScroll);
+    }
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [isAnimationEnd]);
 
   return (
     <HeroTitleStyle.Container>
@@ -51,29 +71,33 @@ const HeroTitle = () => {
           <HeroTitleStyle.FadeIn $percent={percent} $delay={0.1}>
             N
           </HeroTitleStyle.FadeIn>
-          <HeroTitleStyle.FadeIn $percent={percent} $delay={1}>
+          <HeroTitleStyle.FadeIn
+            $percent={percent}
+            $delay={1}
+            onAnimationEnd={handleFreeFixed}
+          >
             e
           </HeroTitleStyle.FadeIn>
           <HeroTitleStyle.FadeIn $percent={percent} $delay={0.4}>
             v
           </HeroTitleStyle.FadeIn>
-          <HeroTitleStyle.FadeIn $percent={percent} $delay={1.3}>
+          <HeroTitleStyle.FadeIn $percent={percent} $delay={0.2}>
             e
           </HeroTitleStyle.FadeIn>
-          <HeroTitleStyle.FadeIn $percent={percent} $delay={2}>
+          <HeroTitleStyle.FadeIn $percent={percent} $delay={0.4}>
             r
           </HeroTitleStyle.FadeIn>
-          &nbsp;
+          <HeroTitleStyle.Temp>&nbsp;</HeroTitleStyle.Temp>
           <HeroTitleStyle.FadeIn $percent={percent} $delay={0.5}>
             e
           </HeroTitleStyle.FadeIn>
-          <HeroTitleStyle.FadeIn $percent={percent} $delay={1.35}>
+          <HeroTitleStyle.FadeIn $percent={percent} $delay={0.9}>
             n
           </HeroTitleStyle.FadeIn>
           <HeroTitleStyle.FadeIn $percent={percent} $delay={0.7}>
             d
           </HeroTitleStyle.FadeIn>
-          <HeroTitleStyle.FadeIn $percent={percent} $delay={2.4}>
+          <HeroTitleStyle.FadeIn $percent={percent} $delay={0.2}>
             ,
           </HeroTitleStyle.FadeIn>
         </HeroTitleStyle.Line>
@@ -82,13 +106,13 @@ const HeroTitle = () => {
           <HeroTitleStyle.FadeIn $percent={percent} $delay={0.5}>
             v
           </HeroTitleStyle.FadeIn>
-          <HeroTitleStyle.FadeIn $percent={percent} $delay={1.8}>
+          <HeroTitleStyle.FadeIn $percent={percent} $delay={0.7}>
             e
           </HeroTitleStyle.FadeIn>
           <HeroTitleStyle.FadeIn $percent={percent} $delay={0.3}>
             r
           </HeroTitleStyle.FadeIn>
-          &nbsp;
+          <HeroTitleStyle.Temp>&nbsp;</HeroTitleStyle.Temp>
           <HeroTitleStyle.Lightning $percent={percent}>
             <span>u</span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 162.04 342.54">
@@ -134,6 +158,8 @@ const HeroTitle = () => {
           </HeroTitleStyle.FadeIn>
         </HeroTitleStyle.Line>
       </HeroTitleStyle.Title>
+
+      <HeroTitleStyle.ScrollAble $isAnimationEnd={isAnimationEnd} />
     </HeroTitleStyle.Container>
   );
 };

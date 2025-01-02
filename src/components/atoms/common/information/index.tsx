@@ -9,7 +9,7 @@ interface InformationProps extends PropsWithChildren {
 
 const Information = (props: InformationProps) => {
   const { delay = 0, children } = props;
-  const infoRef = useObserver<HTMLDivElement>();
+  const infoRef = useObserver<HTMLDivElement>({ threshold: 1 });
 
   return (
     <InformationStyle.Container ref={infoRef} $delay={delay}>

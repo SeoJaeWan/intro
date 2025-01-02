@@ -10,6 +10,12 @@ const Container = styled.div`
 
   width: fit-content;
   height: 100%;
+
+  @media (max-width: ${(props) => props.theme.media.tablet}) {
+    width: 100%;
+
+    padding: 25vh 0 50px;
+  }
 `;
 
 const Content = styled.p`
@@ -22,6 +28,22 @@ const Content = styled.p`
   white-space: nowrap;
   font-size: 5.5vw;
   font-weight: 600;
+
+  @media (max-width: ${(props) => props.theme.media.tablet}) {
+    display: none;
+  }
+`;
+
+const MobileContent = styled.p`
+  display: none;
+
+  font-size: max(2.5vw, 20px);
+  text-align: center;
+  word-break: keep-all;
+
+  @media (max-width: ${(props) => props.theme.media.tablet}) {
+    display: block;
+  }
 `;
 
 const mainBoxAni = keyframes`
@@ -145,6 +167,16 @@ const handAni = keyframes`
   }
 `;
 
+const handMobileAni = keyframes`
+  from {
+    transform: rotate(0deg) scale(1) translateX(-50%);
+  }
+
+  to {
+    transform: rotate(30deg) scale(.9) translateX(-50%);
+  }
+`;
+
 const HandImage = styled(Image)`
   position: absolute;
 
@@ -161,11 +193,23 @@ const HandImage = styled(Image)`
   &.show {
     opacity: 1;
   }
+
+  @media (max-width: ${(props) => props.theme.media.tablet}) {
+    top: 8vh;
+    left: 50%;
+    transform: translateX(-55%);
+
+    width: 85px;
+    height: 85px;
+
+    animation: ${handMobileAni} 2s linear infinite alternate;
+  }
 `;
 
 const CommunityStyle = {
   Container,
   Content,
+  MobileContent,
   MainBox,
   SubBox,
   SecondaryBox,

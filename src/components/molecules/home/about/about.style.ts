@@ -6,6 +6,11 @@ const Container = styled(Section)`
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
+
+  min-height: auto;
+
+  padding-top: 15vh;
+  padding-bottom: 15vh;
 `;
 
 const Title = styled.h2`
@@ -13,6 +18,10 @@ const Title = styled.h2`
   font-size: ${(props) => props.theme.font(18)};
 
   margin-bottom: 50px;
+
+  @media (max-width: ${(props) => props.theme.media.mobile}) {
+    font-size: ${(props) => props.theme.font(12)};
+  }
 `;
 
 const AboutStyle = {
