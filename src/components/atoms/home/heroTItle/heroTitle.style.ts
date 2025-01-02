@@ -16,6 +16,8 @@ const FadeInAni = keyframes`
 `;
 
 const Container = styled.div`
+  position: relative;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -222,7 +224,7 @@ const LightningSize = keyframes`
   }
 `;
 
-const TextSize = keyframes`
+const textSize = keyframes`
   0% {
     transform: scale(0);
   }
@@ -240,11 +242,7 @@ const TextSize = keyframes`
   }
 `;
 
-const Count = styled.span`
-  display: inline-flex;
-  justify-content: center;
-  align-items: flex-end;
-`;
+const Count = styled.span``;
 
 interface LightningProps {
   $percent: number;
@@ -262,7 +260,7 @@ const Lightning = styled.span<LightningProps>`
     ${(props) =>
       props.$percent === 100 &&
       css`
-        animation: ${TextSize} 1s cubic-bezier(0.42, 0, 0.02, 0.99) 1s forwards;
+        animation: ${textSize} 1s cubic-bezier(0.42, 0, 0.02, 0.99) 1s forwards;
       `}
   }
 
@@ -618,6 +616,77 @@ const Temp = styled.span`
   font-size: 5vw;
 `;
 
+const ScrollAni = keyframes`
+  0% {
+    transform: translateX(-50%);
+  }
+
+  50% {
+    transform: translateX(-50%);
+    
+    height:20px;
+  }
+  80%{
+    height: 10px;
+    transform: translateX(-50%) translateY(10px);
+  }
+`;
+
+interface ScrollAbleProps {
+  $isAnimationEnd: boolean;
+}
+
+const ScrollAble = styled.div<ScrollAbleProps>`
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  opacity: ${(props) => (props.$isAnimationEnd ? 1 : 0)};
+  transition: opacity 0.5s;
+
+  &::before {
+    content: '';
+
+    display: block;
+
+    width: 20px;
+    height: 40px;
+
+    border-radius: 20px;
+    background: ${(props) => props.theme.color.white};
+  }
+
+  &::after {
+    content: '';
+
+    position: absolute;
+    top: 10px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: block;
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 2.5px;
+
+    background: ${(props) => props.theme.color.red};
+
+    ${(props) =>
+      props.$isAnimationEnd
+        ? css`
+            animation: ${ScrollAni} 1.2s ease-in-out infinite;
+          `
+        : css`
+            animation: none;
+          `}
+  }
+`;
+
 const HeroTitleStyle = {
   Container,
   Title,
@@ -635,6 +704,7 @@ const HeroTitleStyle = {
   FadeLeft,
   FadeScrew,
   Temp,
+  ScrollAble,
 };
 
 export default HeroTitleStyle;

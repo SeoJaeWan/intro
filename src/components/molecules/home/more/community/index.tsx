@@ -5,20 +5,23 @@ import Box from '@/components/atoms/home/box';
 import useObserver from '@/hooks/useObserver';
 import Runner from '@/components/atoms/home/runner';
 import Rising from '@/components/atoms/home/rising';
+import Good from '@/components/atoms/home/good';
 
-const content1 = ['좋은\u00A0', '서비스를\u00A0'];
+const content1 = ['좋은\u00A0'];
 
-const content2 = WordSplit(`완성하기 위해서는 팀원과의 `);
+const content2 = ['서비스를\u00A0'];
 
-const content3 = WordSplit(`이 중요하다고 생각해요. `);
+const content3 = WordSplit(`완성하기 위해서는 팀원과의 `);
 
-const content4 = WordSplit('혼자 앞서나가는 것이 아닌 ');
+const content4 = WordSplit(`이 중요하다고 생각해요. `);
 
-const content5 = WordSplit('전체의 ');
+const content5 = WordSplit('혼자 앞서나가는 것이 아닌 ');
 
-const content6 = WordSplit('전투력');
+const content6 = WordSplit('전체의 ');
 
-const content7 = WordSplit(' 상승에 관심이 많습니다.');
+const content7 = WordSplit('전투력');
+
+const content8 = WordSplit(' 상승에 관심이 많습니다.');
 
 const mobileContent =
   '좋은 서비스를 완성하기 위해서는 팀원과의 소통이 중요하다고 생각해요. 혼자 앞서나가는 것이 아닌 전체의 전투력 상승에 관심이 많습니다.';
@@ -34,17 +37,27 @@ const Community = () => {
     <CommunityStyle.Container>
       <h3 className={'a11y'}>Communication</h3>
 
-      <CommunityStyle.MobileContent>
+      <p className={'a11y'}>{mobileContent}</p>
+
+      <CommunityStyle.MobileContent aria-label="hidden">
         {mobileContent}
       </CommunityStyle.MobileContent>
 
-      <CommunityStyle.Content>
-        {content1.map((char, index) => (
+      <CommunityStyle.Content aria-label="hidden">
+        <Good>
+          {content1.map((char, index) => (
+            <ShowChar animation={'fadeUp'} key={index}>
+              {char}
+            </ShowChar>
+          ))}
+        </Good>
+
+        {content2.map((char, index) => (
           <ShowChar animation={'fadeUp'} key={index}>
             {char}
           </ShowChar>
         ))}
-        {content2.map((char, index) => (
+        {content3.map((char, index) => (
           <ShowChar
             animation={index % 2 === 0 ? 'zigzagUp' : 'zigzagDown'}
             key={index}
@@ -62,7 +75,7 @@ const Community = () => {
           <Box color={'box5'}>&nbsp;협업&nbsp;</Box>
         </CommunityStyle.SecondaryBox>
 
-        {content3.map((char, index) => (
+        {content4.map((char, index) => (
           <ShowChar
             animation={index % 2 === 0 ? 'zigzagUp' : 'zigzagDown'}
             key={index}
@@ -72,7 +85,7 @@ const Community = () => {
         ))}
 
         <Runner>
-          {content4.map((char, index) => (
+          {content5.map((char, index) => (
             <ShowChar
               animation={index % 2 === 0 ? 'zigzagUp' : 'zigzagDown'}
               key={index}
@@ -82,7 +95,7 @@ const Community = () => {
           ))}
         </Runner>
 
-        {content5.map((char, index) => (
+        {content6.map((char, index) => (
           <ShowChar
             animation={index % 2 === 0 ? 'zigzagUp' : 'zigzagDown'}
             key={index}
@@ -92,14 +105,14 @@ const Community = () => {
         ))}
 
         <Rising>
-          {content6.map((char, index) => (
+          {content7.map((char, index) => (
             <ShowChar animation={'zoomOut'} key={index}>
               {char}
             </ShowChar>
           ))}
         </Rising>
 
-        {content7.map((char, index) => (
+        {content8.map((char, index) => (
           <ShowChar
             animation={index % 2 === 0 ? 'zigzagUp' : 'zigzagDown'}
             key={index}

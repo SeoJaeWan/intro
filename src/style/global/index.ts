@@ -48,6 +48,13 @@ const Global = styled.createGlobalStyle`
     margin: -1px;
     overflow: hidden;
   }
+
+  .fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
 `;
 
 export default Global;

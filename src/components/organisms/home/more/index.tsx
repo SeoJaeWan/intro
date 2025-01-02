@@ -37,7 +37,9 @@ const More = () => {
           Math.min(contentWidth, contentWidth * (percent / 100) - viewWidth),
         );
 
-        layout.style.transform = `translateX(calc(-${translateX}px))`;
+        console.log(translateX);
+
+        layout.style.transform = `translateX(-${translateX}px)`;
       }
     };
 
