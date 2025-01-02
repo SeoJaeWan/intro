@@ -52,6 +52,8 @@ const Global = styled.createGlobalStyle`
   ::-webkit-scrollbar-thumb {
     background-color: ${(props) => props.theme.color.white};
     border-radius: 10px;
+
+    cursor: pointer;
   }
 
   .a11y {
