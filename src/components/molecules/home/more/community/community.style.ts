@@ -1,6 +1,9 @@
+import Image from 'next/image';
 import styled, { keyframes } from 'styled-components';
 
 const Container = styled.div`
+  position: relative;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -132,12 +135,41 @@ const SecondaryBox = styled.span`
   }
 `;
 
+const handAni = keyframes`
+  from {
+    transform: rotate(0deg) scale(1);
+  }
+
+  to {
+    transform: rotate(30deg) scale(.9);
+  }
+`;
+
+const HandImage = styled(Image)`
+  position: absolute;
+
+  top: 70%;
+  left: 10%;
+
+  width: 100px;
+  height: 100px;
+
+  animation: ${handAni} 2s linear infinite alternate;
+  opacity: 0;
+  transition: opacity 0.5s;
+
+  &.show {
+    opacity: 1;
+  }
+`;
+
 const CommunityStyle = {
   Container,
   Content,
   MainBox,
   SubBox,
   SecondaryBox,
+  HandImage,
 };
 
 export default CommunityStyle;
