@@ -25,6 +25,8 @@ const Community = () => {
   const box2Ref = useObserver<HTMLDivElement>({ threshold: 1 });
   const box3Ref = useObserver<HTMLDivElement>({ threshold: 1 });
 
+  const handRef = useObserver<HTMLImageElement>({ threshold: 1 });
+
   return (
     <CommunityStyle.Container>
       <h3 className={'a11y'}>Communication</h3>
@@ -99,6 +101,14 @@ const Community = () => {
           </ShowChar>
         ))}
       </CommunityStyle.Content>
+
+      <CommunityStyle.HandImage
+        src={'/assets/images/common/hands.svg'}
+        alt={''}
+        width={100}
+        height={100}
+        ref={handRef}
+      />
     </CommunityStyle.Container>
   );
 };
