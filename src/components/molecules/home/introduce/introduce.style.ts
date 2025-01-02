@@ -22,11 +22,16 @@ const Article = styled.article`
     content: '';
     display: block;
 
-    width: 100%;
+    width: calc(100%);
     height: 0.5px;
 
     background-color: ${(props) => props.theme.color.line};
     opacity: 0.3;
+  }
+
+  @media (max-width: ${(props) => props.theme.media.mobile}) {
+    flex-direction: column;
+    align-items: center;
   }
 `;
 
@@ -47,6 +52,14 @@ interface HovingImageProps {
 
 const HovingImage = styled(Image)<HovingImageProps>`
   animation: ${hovingAni} 5s ${(props) => props.$delay}s ease-in-out infinite;
+
+  @media (max-width: ${(props) => props.theme.media.mobile}) {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+
+    aspect-ratio: 1/1;
+  }
 `;
 
 const ContentBox = styled.div`
@@ -57,6 +70,14 @@ const ContentBox = styled.div`
   width: 70%;
 
   padding: 50px 0;
+
+  @media (max-width: ${(props) => props.theme.media.mobile}) {
+    gap: 20px;
+
+    width: 100%;
+
+    padding: 0 0 25px;
+  }
 `;
 
 interface TitleProps {
@@ -64,14 +85,16 @@ interface TitleProps {
 }
 
 const Title = styled.h3<TitleProps>`
-  font-size: ${(props) => props.theme.font(36)};
+  font-size: ${(props) =>
+    `max(${props.theme.font(16)},min(2.6vw, ${props.theme.font(36)}))`};
   font-weight: 700;
 
   color: ${(props) => props.theme.color[props.$color]};
 `;
 
 const Content = styled.p`
-  font-size: ${(props) => props.theme.font(38)};
+  font-size: ${(props) =>
+    `max(${props.theme.font(20)},min(2.8vw, ${props.theme.font(40)}))`};
   font-weight: 500;
   line-height: 1.3;
   word-break: keep-all;

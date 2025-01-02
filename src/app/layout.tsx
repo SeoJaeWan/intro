@@ -16,6 +16,13 @@ const pretendard = localFont({
   variable: '--font-pretendard',
 });
 
+const notoMono = localFont({
+  src: './fonts/RobotoMono-VariableFont_wght.ttf',
+  display: 'swap',
+  weight: '45 920',
+  variable: '--font-mono',
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -23,7 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={pretendard.variable}>
+      <body className={`${pretendard.variable} ${notoMono.variable}`}>
         <StyledComponentsRegistry>
           <Theme>
             <Layout>{children}</Layout>

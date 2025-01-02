@@ -63,7 +63,7 @@ const HeroTitle = () => {
           <HeroTitleStyle.FadeIn $percent={percent} $delay={2}>
             r
           </HeroTitleStyle.FadeIn>
-          &nbsp;
+          <HeroTitleStyle.Temp>&nbsp;</HeroTitleStyle.Temp>
           <HeroTitleStyle.FadeIn $percent={percent} $delay={0.5}>
             e
           </HeroTitleStyle.FadeIn>
@@ -88,7 +88,7 @@ const HeroTitle = () => {
           <HeroTitleStyle.FadeIn $percent={percent} $delay={0.3}>
             r
           </HeroTitleStyle.FadeIn>
-          &nbsp;
+          <HeroTitleStyle.Temp>&nbsp;</HeroTitleStyle.Temp>
           <HeroTitleStyle.Lightning $percent={percent}>
             <span>u</span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 162.04 342.54">

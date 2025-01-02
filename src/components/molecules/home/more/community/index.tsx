@@ -20,6 +20,9 @@ const content6 = WordSplit('전투력');
 
 const content7 = WordSplit(' 상승에 관심이 많습니다.');
 
+const mobileContent =
+  '좋은 서비스를 완성하기 위해서는 팀원과의 소통이 중요하다고 생각해요. 혼자 앞서나가는 것이 아닌 전체의 전투력 상승에 관심이 많습니다.';
+
 const Community = () => {
   const box1Ref = useObserver<HTMLDivElement>({ threshold: 1 });
   const box2Ref = useObserver<HTMLDivElement>({ threshold: 1 });
@@ -30,6 +33,10 @@ const Community = () => {
   return (
     <CommunityStyle.Container>
       <h3 className={'a11y'}>Communication</h3>
+
+      <CommunityStyle.MobileContent>
+        {mobileContent}
+      </CommunityStyle.MobileContent>
 
       <CommunityStyle.Content>
         {content1.map((char, index) => (

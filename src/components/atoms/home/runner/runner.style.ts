@@ -16,10 +16,13 @@ const runnerAni = keyframes`
     left: 100%;
     transform: perspective(5000px) translateY(-100%) rotateY(180deg) translateX(100%);
     
+    opacity: 1;
   }
   100% {
     left: 100%;
     transform: perspective(5000px) translateY(-100%) rotateY(180deg) rotateX(90deg) translateX(100%);
+  
+    opacity: 0;
   }
 `;
 

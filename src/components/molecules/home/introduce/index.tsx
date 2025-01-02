@@ -53,7 +53,7 @@ const Introduce = () => {
         />
 
         <IntroduceStyle.ContentBox>
-          <IntroduceStyle.Title $color={'box4'}>Co-work</IntroduceStyle.Title>
+          <IntroduceStyle.Title $color={'box4'}>Co-Work</IntroduceStyle.Title>
           <IntroduceStyle.Content>
             서비스를 성공적으로 완료하기 위해 동료들과의 원활한 소통이
             중요하다고 생각합니다. 갈등을 회피하기 위해 돌려 말하기보다는,

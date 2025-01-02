@@ -14,6 +14,7 @@ const Growth = () => {
       <GrowthStyle.SubBox>
         <Box color={'box2'}>That&apos;s Me, Experience Lover</Box>
       </GrowthStyle.SubBox>
+
       <GrowthStyle.Content>
         낯선 기능에 설렘을 가지며 React와 Next.js 환경에서 즐거운 개발을 하고
         있습니다. <br />

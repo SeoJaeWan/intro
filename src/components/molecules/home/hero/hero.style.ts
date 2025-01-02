@@ -19,6 +19,20 @@ const Info = styled.div`
 
   font-size: ${(props) => props.theme.font(24)};
   font-weight: bold;
+
+  transition: all 0.5s;
+
+  @media (max-width: ${(props) => props.theme.media.tablet}) {
+    bottom: 50%;
+    transform: translateY(220px);
+  }
+
+  @media (max-width: ${(props) => props.theme.media.mobile}) {
+    left: 10px;
+    bottom: 50%;
+    transform: translateY(120px);
+    font-size: ${(props) => props.theme.font(12)};
+  }
 `;
 
 const HeroStyle = {

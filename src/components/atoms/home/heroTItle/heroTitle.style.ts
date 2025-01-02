@@ -25,6 +25,10 @@ const Container = styled.div`
   opacity: 0;
 
   animation: ${FadeInAni} 2s cubic-bezier(0.42, 0, 0.02, 0.99) 2s forwards;
+
+  * {
+    font-family: var(--font-mono);
+  }
 `;
 
 const Title = styled.div`
@@ -34,8 +38,8 @@ const Title = styled.div`
   width: 100%;
 
   font-size: ${(props) => `calc(14vw + ${props.theme.font(16)})`};
-  letter-spacing: -2px;
-  font-weight: 500;
+  letter-spacing: -1vw;
+  font-weight: 600;
 
   & * {
     line-height: 0.95;
@@ -50,8 +54,12 @@ const Title = styled.div`
     align-self: flex-end;
   }
 
+  @media (max-width: ${(props) => props.theme.media.tablet}) {
+    font-size: ${(props) => `calc(12vw + ${props.theme.font(20)})`};
+  }
+
   @media (max-width: ${(props) => props.theme.media.mobile}) {
-    font-size: ${(props) => `calc(12vw + ${props.theme.font(16)})`};
+    font-size: 11vw;
   }
 `;
 
@@ -236,9 +244,6 @@ const Count = styled.span`
   display: inline-flex;
   justify-content: center;
   align-items: flex-end;
-  letter-spacing: 1px;
-
-  width: 8.75vw;
 `;
 
 interface LightningProps {
@@ -609,6 +614,10 @@ const FadeScrew = styled.span<FadeScrewProps>`
     `};
 `;
 
+const Temp = styled.span`
+  font-size: 5vw;
+`;
+
 const HeroTitleStyle = {
   Container,
   Title,
@@ -625,6 +634,7 @@ const HeroTitleStyle = {
   TextRotate,
   FadeLeft,
   FadeScrew,
+  Temp,
 };
 
 export default HeroTitleStyle;
