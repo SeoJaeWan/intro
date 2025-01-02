@@ -11,6 +11,7 @@ const Global = styled.createGlobalStyle`
   }
 
   * {
+    position: relative;
     z-index: 1;
 
     box-sizing: border-box;

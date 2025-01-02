@@ -75,7 +75,7 @@ const Container = styled.div<ContainerProps>`
 
     opacity: 0;
 
-    background-image: ${`url("/assets/images/common/brackets.svg")`};
+    background-image: ${`url("/assets/images/home/brackets.svg")`};
     background-repeat: no-repeat;
     background-position: center;
   }

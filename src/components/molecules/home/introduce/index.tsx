@@ -8,7 +8,7 @@ const Introduce = () => {
 
       <IntroduceStyle.Article>
         <IntroduceStyle.HovingImage
-          src={'/assets/images/common/develop.png'}
+          src={'/assets/images/home/develop.png'}
           alt={''}
           width={400}
           height={400}
@@ -26,7 +26,7 @@ const Introduce = () => {
 
       <IntroduceStyle.Article>
         <IntroduceStyle.HovingImage
-          src={'/assets/images/common/devOps.png'}
+          src={'/assets/images/home/devOps.png'}
           alt={''}
           width={400}
           height={400}
@@ -45,7 +45,7 @@ const Introduce = () => {
 
       <IntroduceStyle.Article>
         <IntroduceStyle.HovingImage
-          src={'/assets/images/common/coWork.png'}
+          src={'/assets/images/home/coWork.png'}
           alt={''}
           width={400}
           height={400}

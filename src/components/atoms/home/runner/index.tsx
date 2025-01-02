@@ -16,7 +16,7 @@ const Runner = (props: PropsWithChildren) => {
   return (
     <RunnerStyle.Container>
       <RunnerStyle.Runner
-        src={'/assets/images/common/runner.png'}
+        src={'/assets/images/home/runner.png'}
         alt={''}
         width={1146}
         height={1236}
@@ -25,7 +25,7 @@ const Runner = (props: PropsWithChildren) => {
       />
 
       <RunnerStyle.Cancel
-        src={'/assets/images/common/cancel.png'}
+        src={'/assets/images/home/cancel.png'}
         alt=""
         width={1200}
         height={1200}

@@ -123,7 +123,7 @@ const Community = () => {
       </CommunityStyle.Content>
 
       <CommunityStyle.HandImage
-        src={'/assets/images/common/hands.svg'}
+        src={'/assets/images/home/hands.svg'}
         alt={''}
         width={100}
         height={100}
