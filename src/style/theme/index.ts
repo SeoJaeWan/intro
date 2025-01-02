@@ -5,6 +5,18 @@ export const color = {
   star: '#eccc68',
 
   line: '#f9f5ea',
+
+  box1: '#eb2f06',
+  box2: '#fa8231',
+  box3: '#FF6EC7',
+  box4: '#00BFFF',
+  box5: '#39FF14',
+
+  boxShadow: 'rgba(0, 0, 0, 0.2)',
+
+  black: '#0e100f',
+  white: '#ffffff',
+  red: '#eb2f06',
 };
 
 export const media = {

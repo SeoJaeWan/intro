@@ -1,6 +1,11 @@
 import { useEffect, useRef } from 'react';
 
-const useObserver = <T extends Element>() => {
+interface useObserverProps {
+  threshold?: number;
+}
+
+const useObserver = <T extends Element>(props: useObserverProps) => {
+  const threshold = props?.threshold || 1;
   const observerRef = useRef<T | null>(null);
 
   useEffect(() => {
@@ -19,14 +24,14 @@ const useObserver = <T extends Element>() => {
       });
     };
 
-    const observer = new IntersectionObserver(handleShow, { threshold: 1 });
+    const observer = new IntersectionObserver(handleShow, { threshold });
 
     observer.observe(observerEl);
 
     return () => {
       observer.disconnect();
     };
-  }, []);
+  }, [threshold]);
 
   return observerRef;
 };
