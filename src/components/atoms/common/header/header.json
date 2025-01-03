@@ -1,0 +1,12 @@
+{
+  "route": [
+    {
+      "name": "Portfolio",
+      "path": "/portfolio"
+    },
+    {
+      "name": "History",
+      "path": "/history"
+    }
+  ]
+}
