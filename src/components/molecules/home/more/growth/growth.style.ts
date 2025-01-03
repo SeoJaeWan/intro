@@ -78,7 +78,7 @@ const SubBox = styled.p`
     transform: perspective(1000px) rotateX(-90deg) translateX(-40%);
     white-space: nowrap;
 
-    font-size: max(3vw, 18px);
+    font-size: ${(props) => `max(3vw, ${props.theme.font(18)})`};
   }
 `;
 
@@ -134,7 +134,7 @@ const MainBox = styled.h3`
     transform: translateX(-80%);
     white-space: nowrap;
 
-    font-size: max(3vw, 16px);
+    font-size: ${(props) => `max(3vw, ${props.theme.font(16)})`};
   }
 `;
 
@@ -149,7 +149,7 @@ const Content = styled.p`
   @media (max-width: ${(props) => props.theme.media.tablet}) {
     max-width: 100%;
 
-    font-size: max(2.5vw, 20px);
+    font-size: ${(props) => `max(2.5vw, ${props.theme.font(20)})`};
     text-align: center;
   }
 `;
