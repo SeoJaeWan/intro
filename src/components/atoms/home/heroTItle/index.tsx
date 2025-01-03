@@ -6,12 +6,14 @@ import {
   useState,
 } from 'react';
 import HeroTitleStyle from './heroTitle.style';
+import useAnimation from '@/store/animation';
 
 const PercentText = ['p', 'd', 'a'];
 
 const HeroTitle = () => {
   const [percent, setPercent] = useState(0);
   const [isAnimationEnd, setIsAnimationEnd] = useState(false);
+  const { isRootAnimation } = useAnimation();
 
   const percentText = percent.toString().padStart(3, '0').split('');
 
@@ -23,6 +25,8 @@ const HeroTitle = () => {
   };
 
   useEffect(() => {
+    if (!isRootAnimation) return;
+
     const interval = setTimeout(() => {
       const step = () => {
         setPercent((prevPercent) => {
@@ -38,13 +42,15 @@ const HeroTitle = () => {
       window.requestAnimationFrame(step);
     }, 3000);
 
-    const htmlEl = document.querySelector('html');
-
-    htmlEl?.classList.add('fixed');
-
     return () => {
       clearTimeout(interval);
     };
+  }, [isRootAnimation]);
+
+  useEffect(() => {
+    const htmlEl = document.querySelector('html');
+
+    htmlEl?.classList.add('fixed');
   }, []);
 
   useEffect(() => {
@@ -64,7 +70,7 @@ const HeroTitle = () => {
   }, [isAnimationEnd]);
 
   return (
-    <HeroTitleStyle.Container>
+    <HeroTitleStyle.Container $isRootAnimation={isRootAnimation}>
       <h2 className="a11y">Naver End, Ever Update</h2>
       <HeroTitleStyle.Title aria-hidden="true">
         <HeroTitleStyle.Line>
@@ -113,7 +119,10 @@ const HeroTitle = () => {
             r
           </HeroTitleStyle.FadeIn>
           <HeroTitleStyle.Temp>&nbsp;</HeroTitleStyle.Temp>
-          <HeroTitleStyle.Lightning $percent={percent}>
+          <HeroTitleStyle.Lightning
+            $isRootAnimation={isRootAnimation}
+            $percent={percent}
+          >
             <span>u</span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 162.04 342.54">
               <defs>

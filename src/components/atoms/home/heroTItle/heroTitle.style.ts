@@ -15,7 +15,11 @@ const FadeInAni = keyframes`
   }
 `;
 
-const Container = styled.div`
+interface ContainerProps {
+  $isRootAnimation: boolean;
+}
+
+const Container = styled.div<ContainerProps>`
   position: relative;
 
   display: flex;
@@ -26,7 +30,11 @@ const Container = styled.div`
   height: 100%;
   opacity: 0;
 
-  animation: ${FadeInAni} 2s cubic-bezier(0.42, 0, 0.02, 0.99) 2s forwards;
+  ${(props) =>
+    props.$isRootAnimation &&
+    css`
+      animation: ${FadeInAni} 1s cubic-bezier(0.42, 0, 0.02, 0.99) forwards;
+    `}
 
   * {
     font-family: var(--font-mono);
@@ -246,6 +254,7 @@ const Count = styled.span``;
 
 interface LightningProps {
   $percent: number;
+  $isRootAnimation: boolean;
 }
 
 const Lightning = styled.span<LightningProps>`
@@ -281,7 +290,12 @@ const Lightning = styled.span<LightningProps>`
     stroke-dasharray: 100;
     stroke-dashoffset: 100;
 
-    animation: ${LightningLine} 1s cubic-bezier(0.42, 0, 0.02, 0.99) 2s forwards;
+    ${(props) =>
+      props.$isRootAnimation &&
+      css`
+        animation: ${LightningLine} 1s cubic-bezier(0.42, 0, 0.02, 0.99) 1s
+          forwards;
+      `}
   }
 
   .fill {

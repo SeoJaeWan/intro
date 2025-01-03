@@ -1,4 +1,14 @@
 {
+  "route": [
+    {
+      "name": "Portfolio",
+      "path": "/portfolio"
+    },
+    {
+      "name": "History",
+      "path": "/history"
+    }
+  ],
   "star": [
     {
       "top": "9%",

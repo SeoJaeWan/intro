@@ -23,7 +23,7 @@ const Growth = () => {
 
       <GrowthStyle.ImageBox>
         <Image
-          src="/assets/images/common/env.png"
+          src="/assets/images/home/env.png"
           alt=""
           width={600}
           height={600}
