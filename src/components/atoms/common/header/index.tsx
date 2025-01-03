@@ -5,10 +5,58 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { route } from './header.json';
 import useAnimation from '@/store/animation';
+import { HiOutlineMenu } from 'react-icons/hi';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { fixedView, unfixedView } from '@/utils/fixedView';
+import { media } from '@/style/theme';
 
 const Header = () => {
   const { isRootAnimation } = useAnimation();
   const pathname = usePathname();
+  const fixedViewRef = useRef<NodeJS.Timeout>(undefined);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const menuOpen = useCallback(() => {
+    fixedViewRef.current = setInterval(() => {
+      fixedView();
+    }, 500);
+    setIsMenuOpen(true);
+  }, []);
+
+  const menuClose = useCallback(() => {
+    clearInterval(fixedViewRef.current);
+    unfixedView();
+    setIsMenuOpen(false);
+  }, []);
+
+  const handleMenuButton = () => {
+    if (isMenuOpen) {
+      menuClose();
+    } else {
+      menuOpen();
+    }
+  };
+
+  useEffect(() => {
+    const handleResize = () => {
+      const mobile = parseInt(media.mobile, 10);
+
+      if (window.innerWidth > mobile) {
+        menuClose();
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      clearInterval(fixedViewRef.current);
+    };
+  }, []);
+
+  useEffect(() => {
+    menuClose();
+  }, [pathname, menuClose]);
 
   if (!isRootAnimation) {
     return null;
@@ -27,15 +75,33 @@ const Header = () => {
         </Link>
       </HeaderStyle.Logo>
 
-      <nav>
-        <HeaderStyle.NavList>
+      <HeaderStyle.NavList>
+        <ul>
           {route.map(({ name, path }) => (
             <li className={pathname === path ? 'active' : ''} key={path}>
               <Link href={path}>{name}</Link>
             </li>
           ))}
-        </HeaderStyle.NavList>
-      </nav>
+        </ul>
+      </HeaderStyle.NavList>
+
+      <HeaderStyle.Button onClick={handleMenuButton}>
+        <HiOutlineMenu />
+      </HeaderStyle.Button>
+
+      <HeaderStyle.MenuList $open={isMenuOpen}>
+        <ul>
+          {route.map(({ name, path }, idx) => (
+            <HeaderStyle.MenuItem
+              $open={isMenuOpen}
+              $delay={(idx + 1) * 0.5}
+              key={path}
+            >
+              <Link href={path}>{name}</Link>
+            </HeaderStyle.MenuItem>
+          ))}
+        </ul>
+      </HeaderStyle.MenuList>
     </HeaderStyle.Container>
   );
 };

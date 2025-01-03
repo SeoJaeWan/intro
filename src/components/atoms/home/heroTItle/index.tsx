@@ -2,11 +2,13 @@
 import {
   Fragment,
   useEffect,
+  useRef,
   // useRef,
   useState,
 } from 'react';
 import HeroTitleStyle from './heroTitle.style';
 import useAnimation from '@/store/animation';
+import { fixedView, unfixedView } from '@/utils/fixedView';
 
 const PercentText = ['p', 'd', 'a'];
 
@@ -14,13 +16,13 @@ const HeroTitle = () => {
   const [percent, setPercent] = useState(0);
   const [isAnimationEnd, setIsAnimationEnd] = useState(false);
   const { isRootAnimation } = useAnimation();
+  const fixedViewRef = useRef<NodeJS.Timeout>(undefined);
 
   const percentText = percent.toString().padStart(3, '0').split('');
 
   const handleFreeFixed = () => {
-    const htmlEl = document.querySelector('html');
-
-    htmlEl?.classList.remove('fixed');
+    clearInterval(fixedViewRef.current);
+    unfixedView();
     setIsAnimationEnd(true);
   };
 
@@ -48,9 +50,13 @@ const HeroTitle = () => {
   }, [isRootAnimation]);
 
   useEffect(() => {
-    const htmlEl = document.querySelector('html');
+    fixedViewRef.current = setInterval(() => {
+      fixedView();
+    }, 500);
 
-    htmlEl?.classList.add('fixed');
+    return () => {
+      clearInterval(fixedViewRef.current);
+    };
   }, []);
 
   useEffect(() => {
