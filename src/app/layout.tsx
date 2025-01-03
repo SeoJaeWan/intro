@@ -3,6 +3,7 @@ import Theme from '@/style/lib/theme';
 import localFont from 'next/font/local';
 import type { Metadata } from 'next';
 import Layout from '@/components/atoms/common/layout';
+import Header from '@/components/atoms/common/header';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -33,6 +34,7 @@ export default function RootLayout({
       <body className={`${pretendard.variable} ${notoMono.variable}`}>
         <StyledComponentsRegistry>
           <Theme>
+            <Header />
             <Layout>{children}</Layout>
           </Theme>
         </StyledComponentsRegistry>
