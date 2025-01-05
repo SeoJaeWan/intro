@@ -19,6 +19,8 @@ export const color = {
   red: '#eb2f06',
 
   menu: '#1c1f1d',
+
+  portfolio: 'rgba(0,0,0,0.8)',
 };
 
 export const media = {

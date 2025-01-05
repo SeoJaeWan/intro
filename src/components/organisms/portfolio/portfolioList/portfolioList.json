@@ -1,0 +1,61 @@
+{
+  "list": [
+    {
+      "id": 0,
+      "title": "NEU",
+      "category": [
+        "React",
+        "Next.js",
+        "styled-components",
+        "TypeScript",
+        "Zustand",
+        "Docker",
+        "GitHub Actions",
+        "Husky"
+      ],
+      "thumbnail": "/assets/images/portfolio/neu.png"
+    },
+    {
+      "id": 1,
+      "title": "리듬 업",
+      "category": [
+        "React",
+        "Next.js",
+        "styled-components",
+        "Node.js",
+        "Socket.io",
+        "TypeScript",
+        "Zustand",
+        "Docker",
+        "GitHub Actions"
+      ],
+      "thumbnail": "https://rhythm-up.seojaewan.com/assets/common/image.png"
+    },
+    {
+      "id": 2,
+      "title": "마피아 게임",
+      "category": [
+        "React",
+        "Next.js",
+        "styled-components",
+        "Node.js",
+        "Socket.io",
+        "TypeScript",
+        "Docker",
+        "GitHub Actions"
+      ],
+      "thumbnail": "https://mafia-game.seojaewan.com/assets/common/og-image.png"
+    },
+    {
+      "id": 3,
+      "title": "얼롱",
+      "category": [
+        "React Native Cli",
+        "TypeScript",
+        "styled-components",
+        "React Query"
+      ],
+      "thumbnail": "/assets/images/portfolio/along.png"
+    }
+  ]
+}

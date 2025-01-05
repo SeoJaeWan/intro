@@ -1,5 +1,7 @@
+import PortfolioTemplate from '@/components/templates/portfolio';
+
 const Portfolio = () => {
-  return <></>;
+  return <PortfolioTemplate />;
 };
 
 export default Portfolio;
