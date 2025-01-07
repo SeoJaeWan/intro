@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import PortfolioItemStyle from './portfolioItem.style';
-import { Portfolio } from '@/components/organisms/portfolio/portfolioList';
+import { Portfolio } from '@/components/organisms/experience/portfolioList';
 
 interface PortfolioItemProps {
   index: number;
@@ -26,6 +26,7 @@ const PortfolioItem = (props: PortfolioItemProps) => {
     <PortfolioItemStyle.Container
       $currentIndex={currentIndex}
       $prevIndex={prevIndex}
+      $index={index}
       aria-hidden={currentIndex === -1}
     >
       <h3 className="a11y">{item.title}</h3>

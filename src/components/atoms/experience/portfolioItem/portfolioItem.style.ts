@@ -27,6 +27,7 @@ const ThumbnailInfo = styled.span`
 interface ThumbnailItemProps {
   $currentIndex: number;
   $prevIndex: number;
+  $index: number;
 }
 
 const gap = {
@@ -41,6 +42,20 @@ const line = {
   mobile: 1,
 };
 
+const getTranslate = (index: number, media: keyof typeof line) => {
+  return `translateY(calc(${Math.floor(index / line[media])} * (100% + ${gap[media]})))`;
+};
+
+const getLeft = (index: number, media: keyof typeof line) => {
+  switch (media) {
+    case 'desktop':
+      return `calc(${index % line.desktop} * ((100% - ${gap.desktop} * ${line.desktop - 1}) / ${line.desktop} + ${gap.desktop}))`;
+
+    default:
+      return `calc(${index % line[media]} * ((100% - ${gap[media]}) / ${line[media]} + ${gap[media]}))`;
+  }
+};
+
 const Container = styled.li<ThumbnailItemProps>`
   position: initial;
 
@@ -52,22 +67,22 @@ const Container = styled.li<ThumbnailItemProps>`
   button {
     position: absolute;
     z-index: 1;
+
     ${(props) =>
       props.$currentIndex === -1
         ? css`
-            left: ${`calc(${props.$prevIndex % line.desktop} * ((100% - ${gap.desktop} * ${line.desktop - 1}) / ${line.desktop} + ${gap.desktop}))`};
+            left: ${getLeft(props.$prevIndex, 'desktop')};
             top: 0;
 
-            transform: ${`translateY(calc(${Math.floor(props.$prevIndex / line.desktop)} * (100% + ${gap.desktop})))`}
-              scale(0);
+            transform: ${getTranslate(props.$prevIndex, 'desktop')} scale(0);
             opacity: 0;
             transition: all 0.4s;
           `
         : css`
-            left: ${`calc(${props.$currentIndex % line.desktop} * ((100% - ${gap.desktop} * ${line.desktop - 1}) / ${line.desktop} + ${gap.desktop}))`};
+            left: ${getLeft(props.$currentIndex, 'desktop')};
             top: 0;
 
-            transform: ${`translateY(calc(${Math.floor(props.$currentIndex / line.desktop)} * (100% + ${gap.desktop})))`};
+            transform: ${getTranslate(props.$currentIndex, 'desktop')};
             transition: all 0.4s;
           `}
 
@@ -108,19 +123,18 @@ const Container = styled.li<ThumbnailItemProps>`
       ${(props) =>
         props.$currentIndex === -1
           ? css`
-              left: ${`calc(${props.$prevIndex % line.tablet} * ((100% - ${gap.tablet}) / ${line.tablet} + ${gap.tablet}))`};
+              left: ${getLeft(props.$prevIndex, 'tablet')};
               top: 0;
 
-              transform: ${`translateY(calc(${Math.floor(props.$prevIndex / line.tablet)} * (100% + ${gap.tablet})))`}
-                scale(0);
+              transform: ${getTranslate(props.$prevIndex, 'tablet')} scale(0);
               opacity: 0;
               transition: all 0.4s;
             `
           : css`
-              left: ${`calc(${props.$currentIndex % line.tablet} * ((100% - ${gap.tablet}) / ${line.tablet} + ${gap.tablet}))`};
+              left: ${getLeft(props.$currentIndex, 'tablet')};
               top: 0;
 
-              transform: ${`translateY(calc(${Math.floor(props.$currentIndex / line.tablet)} * (100% + ${gap.tablet})))`};
+              transform: ${getTranslate(props.$currentIndex, 'tablet')};
               transition: all 0.4s;
             `}
     }
@@ -135,19 +149,18 @@ const Container = styled.li<ThumbnailItemProps>`
       ${(props) =>
         props.$currentIndex === -1
           ? css`
-              left: ${`calc(${props.$prevIndex % line.mobile} * ((100% - ${gap.mobile}) / ${line.mobile} + ${gap.mobile}))`};
+              left: ${getLeft(props.$prevIndex, 'mobile')};
               top: 0;
 
-              transform: ${`translateY(calc(${Math.floor(props.$prevIndex / line.mobile)} * (100% + ${gap.mobile})))`}
-                scale(0);
+              transform: ${getTranslate(props.$prevIndex, 'mobile')} scale(0);
               opacity: 0;
               transition: all 0.4s;
             `
           : css`
-              left: ${`calc(${props.$currentIndex % line.mobile} * ((100% - ${gap.mobile}) / ${line.mobile} + ${gap.mobile}))`};
+              left: ${getLeft(props.$currentIndex, 'mobile')};
               top: 0;
 
-              transform: ${`translateY(calc(${Math.floor(props.$currentIndex / line.mobile)} * (100% + ${gap.mobile})))`};
+              transform: ${getTranslate(props.$currentIndex, 'mobile')};
               transition: all 0.4s;
             `}
     }

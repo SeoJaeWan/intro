@@ -1,5 +1,5 @@
 import Section from '@/components/atoms/common/section/section.style';
-import styled from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
 const Container = styled(Section)`
   display: flex;
@@ -29,7 +29,19 @@ const CategoryList = styled.ul`
 
 interface CategoryButtonProps {
   $active: boolean;
+  $index: number;
 }
+
+const showCategoryAni = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
 
 const CategoryButton = styled.button<CategoryButtonProps>`
   font-size: ${(props) => `max(1.5vw,${props.theme.font(14)})`};
@@ -45,6 +57,11 @@ const CategoryButton = styled.button<CategoryButtonProps>`
 
   transition: all 0.4s;
 
+  opacity: 0;
+
+  animation: ${showCategoryAni} 0.5s ease
+    ${(props) => 2.5 + props.$index * 0.1}s forwards;
+
   cursor: pointer;
 
   @media (hover: hover) {
@@ -59,7 +76,22 @@ const CategoryButton = styled.button<CategoryButtonProps>`
   }
 `;
 
-const ThumbnailList = styled.ul`
+interface ThumbnailListProps {
+  $show: boolean;
+}
+
+const showThumbnailAni = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+const ThumbnailList = styled.ul<ThumbnailListProps>`
   position: relative;
 
   display: flex;
@@ -69,6 +101,13 @@ const ThumbnailList = styled.ul`
   width: 100%;
 
   margin-top: 20px;
+
+  opacity: 0;
+  ${(props) =>
+    props.$show &&
+    css`
+      animation: ${showThumbnailAni} 0.5s ease-in-out forwards;
+    `}
 `;
 
 const PortfolioListStyle = {

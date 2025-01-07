@@ -3,7 +3,7 @@ import Information from '@/components/atoms/common/information';
 import PortfolioListStyle from './portfolioList.style';
 import { list } from './portfolioList.json';
 import { useState } from 'react';
-import PortfolioItem from '@/components/atoms/portfolio/portfolioItem';
+import PortfolioItem from '@/components/atoms/experience/portfolioItem';
 
 const categories = Array.from(
   new Set(list.reduce((acc, cur) => acc.concat(cur.category), [] as string[])),
@@ -32,6 +32,7 @@ const PortfolioList = () => {
   const [prevList, setPrevList] = useState<Portfolio[]>(
     getRenderList(selectCategories),
   );
+  const [categoryAnimationEnd, setCategoryAnimationEnd] = useState(0);
 
   const handleSelectCategory = (category: string) => {
     let updateCategories = [];
@@ -53,10 +54,14 @@ const PortfolioList = () => {
     setUpdateList(updateList);
   };
 
+  const handleCategoryAnimationEndCount = () => {
+    setCategoryAnimationEnd((prev) => prev + 1);
+  };
+
   return (
     <PortfolioListStyle.Container>
       <PortfolioListStyle.Title>
-        <Information>PORTFOLIO</Information>
+        <Information delay={2}>PORTFOLIO</Information>
       </PortfolioListStyle.Title>
 
       <PortfolioListStyle.CategoryList>
@@ -64,7 +69,9 @@ const PortfolioList = () => {
           <li key={index}>
             <PortfolioListStyle.CategoryButton
               $active={selectCategories.includes(category)}
+              $index={index}
               onClick={() => handleSelectCategory(category)}
+              onAnimationEnd={handleCategoryAnimationEndCount}
             >
               {category}
             </PortfolioListStyle.CategoryButton>
@@ -72,7 +79,9 @@ const PortfolioList = () => {
         ))}
       </PortfolioListStyle.CategoryList>
 
-      <PortfolioListStyle.ThumbnailList>
+      <PortfolioListStyle.ThumbnailList
+        $show={categoryAnimationEnd === categories.length}
+      >
         {list.map((item, index) => (
           <PortfolioItem
             key={item.id}
