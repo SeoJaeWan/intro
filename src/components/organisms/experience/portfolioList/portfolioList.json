@@ -13,7 +13,11 @@
         "GitHub Actions",
         "Husky"
       ],
-      "thumbnail": "/assets/images/portfolio/neu.png"
+      "thumbnail": "/assets/images/portfolio/neu.png",
+      "member": "개인 프로젝트",
+      "links": [
+        { "link": "https://github.com/SeoJaeWan/intro", "label": "github" }
+      ]
     },
     {
       "id": 1,
@@ -29,7 +33,22 @@
         "Docker",
         "GitHub Actions"
       ],
-      "thumbnail": "https://rhythm-up.seojaewan.com/assets/common/image.png"
+      "thumbnail": "https://rhythm-up.seojaewan.com/assets/common/image.png",
+      "member": "개인 프로젝트",
+      "links": [
+        {
+          "link": "https://github.com/SeoJaeWan/youtube-share",
+          "label": "github"
+        },
+        {
+          "link": "https://bum-developer.tistory.com/entry/%EB%91%90-%EB%B2%88%EC%A7%B8-%ED%86%A0%EC%9D%B4-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%EB%A5%BC-%EC%99%84%EB%A3%8C%ED%95%98%EA%B3%A0",
+          "label": "blog"
+        },
+        {
+          "link": "https://rhythm-up.seojaewan.com/",
+          "label": "service"
+        }
+      ]
     },
     {
       "id": 2,
@@ -44,7 +63,19 @@
         "Docker",
         "GitHub Actions"
       ],
-      "thumbnail": "https://mafia-game.seojaewan.com/assets/common/og-image.png"
+      "thumbnail": "https://mafia-game.seojaewan.com/assets/common/og-image.png",
+      "member": "개인 프로젝트",
+      "links": [
+        {
+          "link": "https://github.com/SeoJaeWan/mafia-game",
+          "label": "github"
+        },
+        {
+          "link": "https://bum-developer.tistory.com/entry/%EC%B2%AB-%EB%B2%88%EC%A7%B8-%ED%86%A0%EC%9D%B4-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%EB%A5%BC-%EC%99%84%EB%A3%8C%ED%95%98%EA%B3%A0",
+          "label": "blog"
+        },
+        { "link": "https://mafia-game.seojaewan.com/", "label": "service" }
+      ]
     },
     {
       "id": 3,
@@ -55,7 +86,14 @@
         "styled-components",
         "React Query"
       ],
-      "thumbnail": "/assets/images/portfolio/along.png"
+      "thumbnail": "/assets/images/portfolio/along.png",
+      "member": "팀 프로젝트 (백엔드 1명, 프론트엔드 1명, UI/Ix 1명)",
+      "links": [
+        {
+          "link": "https://github.com/SuperDopeDevelopers/project-client",
+          "label": "github"
+        }
+      ]
     }
   ]
 }

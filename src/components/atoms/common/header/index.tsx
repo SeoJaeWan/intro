@@ -52,7 +52,7 @@ const Header = () => {
       window.removeEventListener('resize', handleResize);
       clearInterval(fixedViewRef.current);
     };
-  }, []);
+  }, [menuClose]);
 
   useEffect(() => {
     menuClose();

@@ -14,6 +14,11 @@ export interface Portfolio {
   thumbnail: string;
   category: string[];
   title: string;
+  member: string;
+  links: {
+    link: string;
+    label: string;
+  }[];
 }
 
 const getRenderList = (categories: string[]) => {
