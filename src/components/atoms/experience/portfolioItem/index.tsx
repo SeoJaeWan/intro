@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import PortfolioItemStyle from './portfolioItem.style';
 import { Portfolio } from '@/components/organisms/experience/portfolioList';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { FaGithub, FaPlay } from 'react-icons/fa6';
 import { ImBlogger2 } from 'react-icons/im';
@@ -26,7 +26,8 @@ const Icons = {
 const PortfolioItem = (props: PortfolioItemProps) => {
   const { index, item, updateList, prevList } = props;
   const itemRef = useRef<HTMLDivElement>(null);
-  const [thumbnailInfo, setThumbnailInfo] = useState({
+  const detailRef = useRef<HTMLDivElement>(null);
+  const [previewDetail, setPreviewDetail] = useState({
     x: 0,
     y: 0,
     width: 0,
@@ -43,21 +44,46 @@ const PortfolioItem = (props: PortfolioItemProps) => {
   const handleAnimationEnd = () => {
     if (itemRef.current!.classList.contains('close')) {
       setActive(false);
-      itemRef.current!.classList.remove('close');
+    } else {
+      if (detailRef.current) {
+        detailRef.current.classList.add('open');
+      }
     }
   };
 
   const handleActive = () => {
+    if (active) return;
+
     setActive(true);
-    if (itemRef.current) {
-      const { x, y, width, height } = itemRef.current.getBoundingClientRect();
-      setThumbnailInfo({ x, y, width, height });
-    }
+    const { x, y, width, height } = itemRef.current!.getBoundingClientRect();
+    setPreviewDetail({ x, y, width, height });
   };
 
   const handleInactive = () => {
-    if (itemRef.current) itemRef.current.classList.add('close');
+    itemRef.current!.classList.add('close');
   };
+
+  useEffect(() => {
+    if (!active) {
+      itemRef.current!.classList.remove('close');
+    }
+  }, [active]);
+
+  useEffect(() => {
+    const resizeObserver = () => {
+      if (!itemRef.current!.classList.contains('close')) {
+        itemRef.current!.classList.add('close');
+      }
+    };
+
+    resizeObserver();
+
+    window.addEventListener('resize', resizeObserver);
+
+    return () => {
+      window.removeEventListener('resize', resizeObserver);
+    };
+  }, []);
 
   return (
     <PortfolioItemStyle.Container
@@ -66,33 +92,33 @@ const PortfolioItem = (props: PortfolioItemProps) => {
       aria-hidden={currentIndex === -1}
     >
       <h3 className="a11y">{item.title}</h3>
-      {active && <PortfolioItemStyle.Shadow onClick={handleInactive} />}
-      <PortfolioItemStyle.Thumbnail
+      {active && <PortfolioItemStyle.Overlay onClick={handleInactive} />}
+      <PortfolioItemStyle.Preview
         $currentIndex={currentIndex}
         $prevIndex={prevIndex}
         $index={index}
         $active={active}
-        $thumbnailInfo={thumbnailInfo}
+        $previewDetail={previewDetail}
         ref={itemRef}
         onAnimationEnd={handleAnimationEnd}
       >
         <div>
           <button onClick={handleActive}>
             {!active && (
-              <PortfolioItemStyle.ThumbnailInfo>
+              <PortfolioItemStyle.PreviewDetails>
                 <PortfolioItemStyle.Title>
                   {item.title}
                 </PortfolioItemStyle.Title>
                 <PortfolioItemStyle.Category>
                   {item.category.join(', ')}
                 </PortfolioItemStyle.Category>
-              </PortfolioItemStyle.ThumbnailInfo>
+              </PortfolioItemStyle.PreviewDetails>
             )}
             <Image src={item.thumbnail} alt={''} width={1232} height={711} />
           </button>
 
           {active && (
-            <PortfolioItemStyle.DetailInfo>
+            <PortfolioItemStyle.Detail ref={detailRef}>
               <PortfolioItemStyle.Title>{item.title}</PortfolioItemStyle.Title>
               <PortfolioItemStyle.Category>
                 {item.category.join(', ')}
@@ -101,7 +127,7 @@ const PortfolioItem = (props: PortfolioItemProps) => {
                 {item.member}
               </PortfolioItemStyle.Member>
 
-              <PortfolioItemStyle.OtherLinkList>
+              <PortfolioItemStyle.ActionLinks>
                 {item.links.map(({ link, label }) => {
                   const Icon = Icons[label as keyof typeof Icons];
 
@@ -109,20 +135,25 @@ const PortfolioItem = (props: PortfolioItemProps) => {
                     <li key={label}>
                       <Link href={link} passHref legacyBehavior>
                         <a target={'_blank'}>
-                          <Icon size={35} />
+                          <Icon size={30} />
                         </a>
                       </Link>
                     </li>
                   );
                 })}
-              </PortfolioItemStyle.OtherLinkList>
-            </PortfolioItemStyle.DetailInfo>
+              </PortfolioItemStyle.ActionLinks>
+
+              <PortfolioItemStyle.Description>
+                dqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqw
+              </PortfolioItemStyle.Description>
+            </PortfolioItemStyle.Detail>
           )}
         </div>
+
         <PortfolioItemStyle.Description>
-          dqwqdwqwddqw
+          dqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqwdqwqdwqwddqw
         </PortfolioItemStyle.Description>
-      </PortfolioItemStyle.Thumbnail>
+      </PortfolioItemStyle.Preview>
     </PortfolioItemStyle.Container>
   );
 };

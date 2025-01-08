@@ -13,7 +13,7 @@ const Member = styled.span`
   font-size: ${(props) => `max(1vw, ${props.theme.font(16)})`};
 `;
 
-const OtherLinkList = styled.ul`
+const ActionLinks = styled.ul`
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -29,9 +29,18 @@ const Description = styled.p`
   margin-top: 20px;
 
   font-size: ${(props) => `max(1vw, ${props.theme.font(20)})`};
+  word-break: break-all;
+
+  overflow: auto;
+
+  @media (max-width: ${(props) => props.theme.media.mobile}) {
+    display: none;
+
+    font-size: ${(props) => `max(1vw, ${props.theme.font(16)})`};
+  }
 `;
 
-const ThumbnailInfo = styled.span`
+const PreviewDetails = styled.span`
   position: absolute;
   top: 50%;
   left: 50%;
@@ -57,48 +66,86 @@ const ThumbnailInfo = styled.span`
 
 const showDetail = keyframes`
   from {
-    flex:1;
-    height: auto;
+    flex: 1;
     opacity: 0;
-    transform: translateY(40px);
-    margin-left: 20px;
   }
   
   to {
-    flex:1;
-    height: auto;
+    flex: 1;
     opacity: 1;
-    transform: translateY(0);
-    margin-left: 20px;
   }
 `;
 
-const DetailInfo = styled.div`
+const Detail = styled.div`
   position: relative;
 
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: flex-start;
   gap: 20px;
   width: 0;
   height: 0;
 
-  padding-top: 30px;
-
   color: ${(props) => props.theme.color.text};
 
   opacity: 0;
   overflow: hidden;
-  animation: ${showDetail} 2s 1s forwards;
+
+  &.open {
+    height: 100%;
+    animation: ${showDetail} 2s forwards;
+  }
+
+  ${Description} {
+    display: none;
+  }
+
+  @media (max-width: ${(props) => props.theme.media.tablet}) {
+    gap: 10px;
+
+    padding-top: 0;
+
+    ${Title} {
+      font-size: ${(props) => props.theme.font(24)};
+    }
+
+    ${Category} {
+      font-size: ${(props) => props.theme.font(14)};
+      line-height: 1.3;
+    }
+
+    ${Member} {
+      font-size: ${(props) => props.theme.font(12)};
+    }
+  }
+
+  @media (max-width: ${(props) => props.theme.media.mobile}) {
+    overflow: auto;
+    justify-content: flex-start;
+
+    &.open {
+      width: 100%;
+    }
+
+    ${Description} {
+      display: block;
+
+      border-top: 1px solid ${(props) => props.theme.color.line};
+      padding-top: 10px;
+
+      margin-top: 0;
+      overflow: initial;
+    }
+  }
 `;
 
-interface ThumbnailProps {
+interface PreviewProps {
   $currentIndex: number;
   $prevIndex: number;
   $index: number;
   $active: boolean;
-  $thumbnailInfo: { x: number; y: number; width: number; height: number };
+  $previewDetail: { x: number; y: number; width: number; height: number };
 }
 
 const gap = {
@@ -127,7 +174,7 @@ const getLeft = (index: number, media: keyof typeof line) => {
   }
 };
 
-const showCenter = ({
+const openPortfolioDetail = ({
   x,
   y,
   width,
@@ -147,7 +194,7 @@ const showCenter = ({
     height: ${height}px;
   }
 
-  60% {
+ 60% {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -170,7 +217,7 @@ const showCenter = ({
   }
 `;
 
-const closeCenter = ({
+const closePortfolioDetail = ({
   x,
   y,
   width,
@@ -213,7 +260,52 @@ const closeCenter = ({
   }
 `;
 
-const Thumbnail = styled.div<ThumbnailProps>`
+const resizeButton = keyframes`
+  0% {
+    width: 100%;
+    height: 100%;
+  }
+
+  50% {
+    width: 100%;
+    height: 100%;
+  }
+
+  100% {
+    width: 350px;
+    height: auto;
+  }
+`;
+
+const reverseResizeButton = keyframes`
+  0% {
+    width: 350px;
+  }
+
+  50% {
+    width: 100%;
+  }
+
+  100% {
+    width: 100%;
+  }
+`;
+
+const gapAni = keyframes`
+  0% {
+    gap: 0;
+  }
+
+  90% {
+    gap: 0;
+  }
+
+  100% { 
+    gap: 20px;
+  }
+`;
+
+const Preview = styled.div<PreviewProps>`
   position: absolute;
   z-index: 1;
 
@@ -246,6 +338,10 @@ const Thumbnail = styled.div<ThumbnailProps>`
   border-radius: 20px;
 
   & > div {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+
     width: 100%;
     height: 100%;
   }
@@ -308,29 +404,6 @@ const Thumbnail = styled.div<ThumbnailProps>`
           `}
   }
 
-  &.close {
-    position: fixed;
-    z-index: 3;
-
-    display: flex;
-    flex-direction: column;
-
-    animation: ${(props) => closeCenter(props.$thumbnailInfo)} 1s forwards;
-
-    ${DetailInfo} {
-      animation: none;
-    }
-
-    ${Description} {
-      display: none;
-    }
-
-    button {
-      width: 100%;
-      height: 100%;
-    }
-  }
-
   ${(props) =>
     props.$active
       ? css`
@@ -340,29 +413,61 @@ const Thumbnail = styled.div<ThumbnailProps>`
           display: flex;
           flex-direction: column;
 
-          animation: ${showCenter(props.$thumbnailInfo)} 1s forwards;
+          animation: ${openPortfolioDetail(props.$previewDetail)} 1s forwards;
 
-          background-color: ${(props) => props.theme.color.black};
+          background-color: ${props.theme.color.black};
 
           & > div {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-
             height: auto;
+
+            animation: ${gapAni} 1s forwards;
           }
 
           button {
-            width: 100%;
-            max-width: 500px;
-            height: auto;
-
             aspect-ratio: 1232 / 711;
 
             border-radius: 10px;
-            border: 2px solid ${(props) => props.theme.color.white};
+            border: 2px solid ${props.theme.color.white};
 
             overflow: hidden;
+
+            animation: ${resizeButton} 1s forwards;
+          }
+
+          &.close {
+            animation: ${closePortfolioDetail(props.$previewDetail)} 1s forwards;
+
+            & > div {
+              animation: none;
+            }
+
+            ${Detail} {
+              display: none;
+            }
+
+            ${Description} {
+              display: none;
+            }
+
+            button {
+              max-width: 100%;
+              height: 100%;
+
+              border: none;
+
+              animation: ${reverseResizeButton} 1s forwards;
+            }
+          }
+
+          @media (max-width: ${props.theme.media.mobile}) {
+            & > div {
+              flex-direction: column;
+              height: 100%;
+            }
+
+            button {
+              max-width: 100%;
+            }
           }
         `
       : css`
@@ -372,14 +477,14 @@ const Thumbnail = styled.div<ThumbnailProps>`
               transition: all 0.4s;
             }
 
-            ${ThumbnailInfo} {
+            ${PreviewDetails} {
               opacity: 1;
             }
           }
         `}
 `;
 
-const Shadow = styled.button`
+const Overlay = styled.button`
   position: fixed;
   z-index: 2;
   top: 0;
@@ -417,15 +522,15 @@ const Container = styled.li<ContainerProps>`
 
 const PortfolioItemStyle = {
   Container,
-  Thumbnail,
-  Shadow,
-  ThumbnailInfo,
-  DetailInfo,
+  Preview,
+  Overlay,
+  PreviewDetails,
+  Detail,
   Title,
   Category,
   Member,
   Description,
-  OtherLinkList,
+  ActionLinks,
 };
 
 export default PortfolioItemStyle;

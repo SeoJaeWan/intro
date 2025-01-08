@@ -1,9 +1,12 @@
 'use client';
+
 import Information from '@/components/atoms/common/information';
 import PortfolioListStyle from './portfolioList.style';
-import { list } from './portfolioList.json';
+import data from './portfolioList.json';
 import { useState } from 'react';
 import PortfolioItem from '@/components/atoms/experience/portfolioItem';
+
+const { list } = data;
 
 const categories = Array.from(
   new Set(list.reduce((acc, cur) => acc.concat(cur.category), [] as string[])),

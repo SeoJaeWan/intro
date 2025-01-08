@@ -1,8 +1,10 @@
 'use client';
 import { PropsWithChildren, useEffect } from 'react';
 import LayoutStyle from './layout.style';
-import { star } from './layout.json';
+import data from './layout.json';
 import useAnimation from '@/store/animation';
+
+const { star } = data;
 
 const Layout = (props: PropsWithChildren) => {
   const { children } = props;
