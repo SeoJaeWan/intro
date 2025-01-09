@@ -2,6 +2,8 @@ import Section from '@/components/atoms/common/section/section.style';
 import styled, { css, keyframes } from 'styled-components';
 
 const Container = styled(Section)`
+  z-index: 2;
+
   display: flex;
   flex-direction: column;
   align-items: flex-start;

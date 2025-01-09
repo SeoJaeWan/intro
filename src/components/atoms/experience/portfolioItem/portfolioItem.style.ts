@@ -22,7 +22,17 @@ const ActionLinks = styled.ul`
   font-size: ${(props) => `max(1vw, ${props.theme.font(20)})`};
 `;
 
-const Description = styled.p`
+const showDescription = keyframes`
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+`;
+
+const Description = styled.div`
   flex: 1;
   width: 100%;
 
@@ -32,6 +42,20 @@ const Description = styled.p`
   word-break: break-all;
 
   overflow: auto;
+
+  line-height: 1.5;
+
+  opacity: 0;
+  animation: ${showDescription} 1s 1.5s forwards;
+
+  ul {
+    margin-top: 15px;
+    list-style: disc inside;
+  }
+
+  a {
+    font-weight: 900;
+  }
 
   @media (max-width: ${(props) => props.theme.media.mobile}) {
     display: none;
@@ -140,6 +164,15 @@ const Detail = styled.div`
   }
 `;
 
+const PreviewInfo = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  width: 100%;
+  height: 100%;
+`;
+
 interface PreviewProps {
   $currentIndex: number;
   $prevIndex: number;
@@ -211,7 +244,7 @@ const openPortfolioDetail = ({
     transform: translate(-50%, -50%);
 
     width: 80%;
-    height: 80%;
+    height: 70%;
 
     padding: 20px;
   }
@@ -234,7 +267,7 @@ const closePortfolioDetail = ({
     transform: translate(-50%, -50%);
 
     width: 80%;
-    height: 80%;
+    height: 70%;
 
     padding: 20px;
   }
@@ -337,7 +370,7 @@ const Preview = styled.div<PreviewProps>`
   border: 2px solid ${(props) => props.theme.color.line};
   border-radius: 20px;
 
-  & > div {
+  ${PreviewInfo} {
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
@@ -417,7 +450,7 @@ const Preview = styled.div<PreviewProps>`
 
           background-color: ${props.theme.color.black};
 
-          & > div {
+          ${PreviewInfo} {
             height: auto;
 
             animation: ${gapAni} 1s forwards;
@@ -437,7 +470,7 @@ const Preview = styled.div<PreviewProps>`
           &.close {
             animation: ${closePortfolioDetail(props.$previewDetail)} 1s forwards;
 
-            & > div {
+            ${PreviewInfo} {
               animation: none;
             }
 
@@ -460,7 +493,7 @@ const Preview = styled.div<PreviewProps>`
           }
 
           @media (max-width: ${props.theme.media.mobile}) {
-            & > div {
+            ${PreviewInfo} {
               flex-direction: column;
               height: 100%;
             }
@@ -524,6 +557,7 @@ const PortfolioItemStyle = {
   Container,
   Preview,
   Overlay,
+  PreviewInfo,
   PreviewDetails,
   Detail,
   Title,

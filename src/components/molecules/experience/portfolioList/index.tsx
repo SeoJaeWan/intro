@@ -22,6 +22,7 @@ export interface Portfolio {
     link: string;
     label: string;
   }[];
+  description: string;
 }
 
 const getRenderList = (categories: string[]) => {

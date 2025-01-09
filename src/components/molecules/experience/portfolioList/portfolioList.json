@@ -17,7 +17,8 @@
       "member": "개인 프로젝트",
       "links": [
         { "link": "https://github.com/SeoJaeWan/intro", "label": "github" }
-      ]
+      ],
+      "description": "dqw"
     },
     {
       "id": 1,
@@ -48,7 +49,8 @@
           "link": "https://rhythm-up.seojaewan.com/",
           "label": "service"
         }
-      ]
+      ],
+      "description": "<p>실시간으로 동료들과 함꼐 노동요 재생목록을 만드고 재생시킬 수 있는 서비스입니다.</p><p>복잡한 과정 없이 유튜브 동영상 링크를 통해 간단하게 재생 목록을 추가할 수 있습니다.</p><p>또한, 반복 재생 및 재생 목록 셔플 기능을 제공하여 다양한 방식으로 음악을 즐길 수 있습니다.</p><ul><li>Youtube Iframe API를 활용한 영상 링크를 통해 재생 목록 생성 및 재생 기능 구현</li><li><a href='https://bum-developer.tistory.com/entry/Docker-%EB%B0%B0%ED%8F%AC-%EC%B5%9C%EC%A0%81%ED%99%94' target='_blank'>Docker 이미지 최적화</a>를 통해 배포 이미지 용량을 4.6GB에서 300MB로 감소</li><li><a href='https://bum-developer.tistory.com/entry/Nginx-HTTPS' target='_blank'>HTTPS 배포</a>를 완료한 후, Progressive Web App(PWA) 기술을 활용해 웹앱 형태로도 서비스 제공</li></ul>"
     },
     {
       "id": 2,
@@ -75,7 +77,8 @@
           "label": "blog"
         },
         { "link": "https://mafia-game.seojaewan.com/", "label": "service" }
-      ]
+      ],
+      "description": ""
     },
     {
       "id": 3,
@@ -93,7 +96,8 @@
           "link": "https://github.com/SuperDopeDevelopers/project-client",
           "label": "github"
         }
-      ]
+      ],
+      "description": ""
     }
   ]
 }
