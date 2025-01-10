@@ -43,7 +43,7 @@
           "stack": "Next.js, Styled-Components, React-Hook-Form, React-Query",
           "descriptions": [
             "자사 소개 홈페이지의 모바일 페이지 개발",
-            "SEO를 고려하여 React에서 Next.js 마이그레이션 및 검색 상단 노출을 위해 <a href='https://bum-developer.tistory.com/entry/%ED%8F%AC%EA%B4%84-%EA%B2%80%EC%83%89%EC%96%B4%EB%A1%9C-%ED%99%88%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%85%B8%EC%B6%9C%EC%8B%9C%ED%82%A4%EA%B8%B0' target='_blank'>meta tag 관리</a>"
+            "SEO를 고려하여 React에서 Next.js 마이그레이션 및 검색 상단 노출을 위해 <a class='select' data-text='meta tag 관리' href='https://bum-developer.tistory.com/entry/%ED%8F%AC%EA%B4%84-%EA%B2%80%EC%83%89%EC%96%B4%EB%A1%9C-%ED%99%88%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%85%B8%EC%B6%9C%EC%8B%9C%ED%82%A4%EA%B8%B0' target='_blank'>meta tag 관리</a>"
           ]
         }
       ]

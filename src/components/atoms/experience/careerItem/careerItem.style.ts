@@ -1,13 +1,5 @@
 import styled from 'styled-components';
 
-const Indecator = styled.div`
-  width: 50px;
-`;
-
-const Content = styled.div`
-  flex: 1;
-`;
-
 const Title = styled.h3`
   font-size: ${(props) => props.theme.font(30)};
   margin-bottom: 5px;
@@ -53,13 +45,47 @@ const ContentItem = styled.li<ContentItemProps>`
   }
 `;
 
-const Container = styled.article`
-  display: flex;
+const Indicator = styled.div`
+  position: absolute;
+  top: 15px;
+  left: 12.5px;
 
+  display: block;
+
+  width: 15px;
+  height: 0%;
+  background-color: ${(props) => props.theme.color.line};
+
+  border-radius: 5px;
+
+  transition: all 2.5s;
+
+  &::before {
+    content: '';
+
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+
+    width: 15px;
+    height: 15px;
+
+    background-color: ${(props) => props.theme.color.line};
+    border-radius: 5px;
+
+    transition: all 1s 2.5s;
+  }
+`;
+
+const Container = styled.article`
   width: 100%;
+  height: auto;
+
   margin-top: 50px;
   opacity: 0;
   transition: all 0.5s;
+
+  padding-left: 50px;
 
   & * {
     opacity: 0;
@@ -71,17 +97,24 @@ const Container = styled.article`
     & * {
       opacity: 1;
     }
+
+    ${Indicator} {
+      height: 100%;
+
+      &::before {
+        width: 45px;
+      }
+    }
   }
 `;
 
 const CareerItemStyle = {
   Container,
-  Indecator,
-  Content,
   Title,
   PositionAndPeriod,
   ContentsList,
   ContentItem,
+  Indicator,
 };
 
 export default CareerItemStyle;

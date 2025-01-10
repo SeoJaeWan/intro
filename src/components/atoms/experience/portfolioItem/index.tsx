@@ -91,6 +91,7 @@ const PortfolioItem = (props: PortfolioItemProps) => {
 
     return () => {
       window.removeEventListener('resize', resizeObserver);
+      clearInterval(fixedViewRef.current);
     };
   }, []);
 
