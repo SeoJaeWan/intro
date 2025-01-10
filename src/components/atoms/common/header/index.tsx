@@ -3,12 +3,14 @@ import { usePathname } from 'next/navigation';
 import HeaderStyle from './header.style';
 import Link from 'next/link';
 import Image from 'next/image';
-import { route } from './header.json';
+import data from './header.json';
 import useAnimation from '@/store/animation';
 import { HiOutlineMenu } from 'react-icons/hi';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { fixedView, unfixedView } from '@/utils/fixedView';
 import { media } from '@/style/theme';
+
+const { route } = data;
 
 const Header = () => {
   const { isRootAnimation } = useAnimation();
@@ -52,7 +54,7 @@ const Header = () => {
       window.removeEventListener('resize', handleResize);
       clearInterval(fixedViewRef.current);
     };
-  }, []);
+  }, [menuClose]);
 
   useEffect(() => {
     menuClose();

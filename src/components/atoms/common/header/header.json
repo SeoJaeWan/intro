@@ -1,8 +1,8 @@
 {
   "route": [
     {
-      "name": "Portfolio",
-      "path": "/portfolio"
+      "name": "Experience",
+      "path": "/experience"
     },
     {
       "name": "History",

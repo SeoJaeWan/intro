@@ -1,4 +1,17 @@
+import { keyframes } from 'styled-components';
 import * as styled from 'styled-components';
+
+const textColor = keyframes`
+  0% {
+    background-position: right;
+
+  }
+
+  100% {
+    background-position: left;
+
+  }
+`;
 
 const Global = styled.createGlobalStyle`
   html,
@@ -66,11 +79,20 @@ const Global = styled.createGlobalStyle`
     overflow: hidden;
   }
 
-  .fixed {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+  .select {
+    position: relative;
+
+    display: inline-block;
+
+    color: transparent;
+
+    background: url('assets/images/common/background.png'); /* 배경 그라데이션 */
+    background-size: 300% 100%; /* 너비를 0으로 설정, 높이는 100% */
+    background-repeat: no-repeat;
+    background-position: right;
+    -webkit-background-clip: text;
+
+    animation: ${textColor} 5s cubic-bezier(1, 0, 0, 1) infinite;
   }
 `;
 

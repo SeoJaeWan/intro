@@ -16,9 +16,12 @@ export const color = {
 
   black: '#0e100f',
   white: '#ffffff',
+  gray: '#A0A0A0',
   red: '#eb2f06',
 
   menu: '#1c1f1d',
+
+  portfolio: 'rgba(0,0,0,0.8)',
 };
 
 export const media = {
