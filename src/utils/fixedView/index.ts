@@ -1,11 +1,13 @@
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
+
 export const fixedView = () => {
   const htmlEl = document.querySelector('html');
 
-  htmlEl?.classList.add('fixed');
+  disableBodyScroll(htmlEl as HTMLElement);
 };
 
 export const unfixedView = () => {
   const htmlEl = document.querySelector('html');
 
-  htmlEl?.classList.remove('fixed');
+  enableBodyScroll(htmlEl as HTMLElement);
 };

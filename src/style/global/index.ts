@@ -67,10 +67,8 @@ const Global = styled.createGlobalStyle`
   }
 
   .fixed {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    overflow: hidden;
+    touch-action: none;
   }
 `;
 

@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { FaGithub, FaPlay } from 'react-icons/fa6';
 import { ImBlogger2 } from 'react-icons/im';
+import { fixedView, unfixedView } from '@/utils/fixedView';
 
 interface PortfolioItemProps {
   index: number;
@@ -27,6 +28,8 @@ const PortfolioItem = (props: PortfolioItemProps) => {
   const { index, item, updateList, prevList } = props;
   const itemRef = useRef<HTMLDivElement>(null);
   const detailRef = useRef<HTMLDivElement>(null);
+  const fixedViewRef = useRef<NodeJS.Timeout>(undefined);
+
   const [previewDetail, setPreviewDetail] = useState({
     x: 0,
     y: 0,
@@ -57,6 +60,10 @@ const PortfolioItem = (props: PortfolioItemProps) => {
     setActive(true);
     const { x, y, width, height } = itemRef.current!.getBoundingClientRect();
     setPreviewDetail({ x, y, width, height });
+
+    fixedViewRef.current = setInterval(() => {
+      fixedView();
+    }, 500);
   };
 
   const handleInactive = () => {
@@ -66,6 +73,8 @@ const PortfolioItem = (props: PortfolioItemProps) => {
   useEffect(() => {
     if (!active) {
       itemRef.current!.classList.remove('close');
+      clearInterval(fixedViewRef.current);
+      unfixedView();
     }
   }, [active]);
 

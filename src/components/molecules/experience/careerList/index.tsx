@@ -21,7 +21,7 @@ const CareerList = () => {
   return (
     <CareerListStyle.Container>
       <CareerListStyle.Title>
-        <Information delay={2}>Career</Information>
+        <Information>Career</Information>
       </CareerListStyle.Title>
 
       <CareerListStyle.ListBox>
