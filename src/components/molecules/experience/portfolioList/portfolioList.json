@@ -18,7 +18,7 @@
       "links": [
         { "link": "https://github.com/SeoJaeWan/intro", "label": "github" }
       ],
-      "description": "dqw"
+      "description": "<p><strong>서재완</strong>을 나타내는 홈페이지입니다.</p><p>GSAP 홈페이지를 레퍼런스로 제가 <strong>생각하는 개발자</strong>와 <strong>서재완이 어떤 사람인지</strong> 소개하고 있습니다.</p><p>업무 경험과 사이드 프로젝트를 진행할 때마다 주기적으로 <strong>갱신</strong>할 예정입니다.</p>"
     },
     {
       "id": 1,
@@ -78,7 +78,7 @@
         },
         { "link": "https://mafia-game.seojaewan.com/", "label": "service" }
       ],
-      "description": ""
+      "description": "<p>모두에게 친숙한 마피아 게임을 브라우저로 즐길 수 있는 서비스입니다.</p><p>사용자는 Socket 기반으로 방을 생성하고 플레이어를 초대하여 게임을 진행할 수 있습니다.</p><p>실시간 채팅과 원활한 게임 흐름을 제공하며, 손쉽게 방을 만들어 플레이할 수 있습니다.</p><ul><li><strong>Node.js와 Socket.io</strong>를 사용해 사용자 간 실시간 채팅 및 게임 진행을 위한 서버 구현</li><li><a class='select' href='https://bum-developer.tistory.com/entry/Nextjs-Docker%EB%A1%9C-%EB%B0%B0%ED%8F%AC%ED%95%98%EA%B8%B0' target='_blank'>Docker와 Nginx</a>, <a class='select' href='https://bum-developer.tistory.com/entry/Github-Actions%EB%A1%9C-%EB%B0%B0%ED%8F%AC-%EC%9E%90%EB%8F%99%ED%99%94%ED%95%98%EA%B8%B0' target='_blank'>GitHub Action</a>를 이용해 배포 자동화 파이프라인 구축</li><li>데스크탑을 <strong>Linux 서버</strong>로 만들어 자체 서버 배포</li></ul>"
     },
     {
       "id": 3,
@@ -97,7 +97,7 @@
           "label": "github"
         }
       ],
-      "description": ""
+      "description": "<p>여행 순간을 기록하고 공유할 수 있는 모바일 애플리케이션입니다.</p><p>사용자는 <strong>여행 일정 등록, 실시간 위치 기반 경로 로깅,</strong> 그리고 <strong>여행 스팟에 사진과 글을 등록</strong>하여 나만의 여행 일기를 작성할 수 있습니다.</p><p>현재 <strong>Google Play Store</strong>에 등록을 목표로 개발을 진행하고 있습니다.</p><ul><li><a class='select' href='https://bum-developer.tistory.com/entry/iOS-%EC%8B%A4%EC%8B%9C%EA%B0%84-%EC%9C%84%EC%B9%98-%EC%A0%95%EB%B3%B4-%EA%B0%80%EC%A7%80%EA%B3%A0-%EC%98%A4%EA%B8%B0' target='_blank'>실시간 위치 정보</a>를 받아 MapLibre와 연동하여 사용자의 현재 위치 및 여행 경로를 시각화</li><li><a class='select' href='https://bum-developer.tistory.com/entry/React-Native-cli-Google-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EC%97%B0%EB%8F%99%ED%95%98%EA%B8%B0' target='_blank'>카카오, 네이버, 구글 로그인</a> 구현</li><li><a class='select' href='https://bum-developer.tistory.com/entry/React-Native-%ED%8C%8C%EC%9D%B4%EC%96%B4%EB%B2%A0%EC%9D%B4%EC%8A%A4-%EB%B0%B0%ED%8F%AC%ED%95%98%EA%B8%B0' target='_blank'>파이어베이스 배포</a>를 활용한 애플리케이션 실사용 테스트</li></ul>"
     }
   ]
 }
