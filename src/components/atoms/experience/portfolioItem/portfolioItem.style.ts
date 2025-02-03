@@ -82,7 +82,7 @@ const PreviewDetails = styled.span`
 
   color: ${(props) => props.theme.color.text};
 
-  background-color: ${(props) => props.theme.color.portfolio};
+  background-color: ${(props) => props.theme.color.backgroundShadow};
 
   opacity: 0;
   transition: all 0.4s;
