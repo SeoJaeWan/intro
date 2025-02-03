@@ -13,6 +13,7 @@ export const color = {
   box5: '#39FF14',
 
   boxShadow: 'rgba(0, 0, 0, 0.2)',
+  backgroundShadow: 'rgba(0,0,0,0.8)',
 
   black: '#0e100f',
   white: '#ffffff',
@@ -20,8 +21,6 @@ export const color = {
   red: '#eb2f06',
 
   menu: '#1c1f1d',
-
-  portfolio: 'rgba(0,0,0,0.8)',
 };
 
 export const media = {
