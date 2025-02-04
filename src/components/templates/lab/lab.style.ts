@@ -11,6 +11,14 @@ const LabList = styled.ul`
 
   width: 100%;
   height: 100%;
+
+  @media (max-width: ${(props) => props.theme.media.tablet}) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: ${(props) => props.theme.media.mobile}) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `;
 
 const LabStyle = {

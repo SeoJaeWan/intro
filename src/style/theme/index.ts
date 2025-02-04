@@ -19,6 +19,7 @@ export const color = {
   white: '#ffffff',
   gray: '#A0A0A0',
   red: '#eb2f06',
+  yellow: '#EDF332',
 
   menu: '#1c1f1d',
 };
