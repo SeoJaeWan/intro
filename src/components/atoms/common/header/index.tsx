@@ -73,6 +73,7 @@ const Header = () => {
             alt={'Never End, Ever Update'}
             width={526}
             height={300}
+            priority
           />
         </Link>
       </HeaderStyle.Logo>
