@@ -16,8 +16,6 @@ const Layout = (props: PropsWithChildren) => {
     setTimeout(() => {
       setIsRootAnimation(true);
     }, maxDelay * 1000);
-
-    window.scrollTo(0, 0);
   }, [setIsRootAnimation]);
 
   return (

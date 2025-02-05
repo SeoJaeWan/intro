@@ -2,18 +2,22 @@
 import LabStyle from './lab.style';
 import data from './lab.json';
 import LabItem from '@/components/atoms/lab/labItem';
+import useAnimation from '@/store/animation';
 
 const { list } = data;
 
 const LabTemplate = () => {
+  const { isRootAnimation } = useAnimation();
+
   return (
     <LabStyle.Container>
       <h2 className="a11y">실험실</h2>
 
       <LabStyle.LabList>
-        {list.map((item) => (
-          <LabItem {...item} key={item.title} />
-        ))}
+        {isRootAnimation &&
+          list.map((item, index) => (
+            <LabItem {...item} key={item.title} index={index} />
+          ))}
       </LabStyle.LabList>
     </LabStyle.Container>
   );

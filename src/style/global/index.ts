@@ -16,6 +16,7 @@ const textColor = keyframes`
 const Global = styled.createGlobalStyle`
   html,
   body {
+    user-select: none;
   }
 
   body {
