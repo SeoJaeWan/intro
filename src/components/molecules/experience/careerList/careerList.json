@@ -1,0 +1,93 @@
+{
+  "list": [
+    {
+      "title": "(주)아이지아이에스",
+      "position": "개발팀 | 주임 | 정규직",
+      "period": "2025.02. ~ 현재",
+      "contents": []
+    },
+    {
+      "title": "주식회사로맨(LomenInc.)",
+      "position": "개발팀 | 주임 | 정규직",
+      "period": "2023. 03. ~ 2024. 07. (1년 5개월)",
+      "contents": [
+        {
+          "descriptions": [
+            "효율적인 협업을 위해 <strong>Atomic Design Pattern</strong>과 <strong>Copound Design Pattern</strong>을 활용하여 프론트엔드 보일러 플레이트 템플릿 구현 및 사내 교육 진행",
+            "프로젝트 단위로 <strong>개발 환경 업데이트</strong>를 체계화하기 위해 프로젝트 종료 후 <strong>프로젝트 회고</strong> 추진",
+            "<strong>코드 리뷰 문화</strong>를 정착시켜 개발 지식 공유와 초기 단계에서의 버그 발견을 통해 품질 개선"
+          ]
+        },
+        {
+          "title": "일러니즘 플랫폼 리뉴얼",
+          "stack": "Next.js, Styled-Components, React-Query, Zustand",
+          "descriptions": [
+            "자사몰 쇼핑몰 플랫폼 개발",
+            "프로젝트 리더로 일정 관리 및 타팀과의 소통 진행",
+            "정기 결제 및 간편 결제 기능 구현"
+          ]
+        },
+        {
+          "title": "한국과총 웹진",
+          "stack": "React, Styled-Components, React-Query",
+          "descriptions": [
+            "한국과학기술단체총연합회에서 발행하는 웹진 플랫폼 개발",
+            "촉박한 일정에 프론트엔드와 백엔드 동시 개발 투입으로 API 지연 문제를 <strong>MSW 도입으로 개발 시간 단축</strong>",
+            "뉴스레터 발송용 이메일 템플릿 구현"
+          ]
+        },
+        {
+          "title": "무무스트",
+          "stack": "React, Styled-Components, React-Query",
+          "descriptions": [
+            "아이디어 보유 사용자와 아티스트를 매칭하는 플랫폼 개발",
+            "협업 시 함수 수정으로 인해 기능이 작동하지 않거나 완료한 코드에서 오류가 발생하던 문제를 <strong>테스트 코드를 작성</strong>하여 오류 빈도를 줄이고, 안정성을 높임"
+          ]
+        },
+        {
+          "title": "로맨 홈페이지",
+          "stack": "Next.js, Styled-Components, React-Hook-Form, React-Query",
+          "descriptions": [
+            "자사 소개 홈페이지의 모바일 페이지 개발",
+            "SEO를 고려하여 React에서 Next.js 마이그레이션 및 검색 상단 노출을 위해 <a class='select' data-text='meta tag 관리' href='https://bum-developer.tistory.com/entry/%ED%8F%AC%EA%B4%84-%EA%B2%80%EC%83%89%EC%96%B4%EB%A1%9C-%ED%99%88%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%85%B8%EC%B6%9C%EC%8B%9C%ED%82%A4%EA%B8%B0' target='_blank'>meta tag 관리</a>"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "주식회사포립소프트웨어",
+      "position": "개발팀 | 팀장 | 정규직",
+      "period": "2020. 10. ~ 2022. 03. (1년 6개월)",
+      "contents": [
+        {
+          "descriptions": [
+            "프론트엔드팀 리더로 클라이언트와 소통 및 프로젝트 일정 관리",
+            "정기적인 팀 스터디를 통해 지식 공유와 함께 팀원들과의 성장 도모"
+          ]
+        },
+        {
+          "title": "사주 플랫폼",
+          "stack": "React Native, Styled-Components, Expo",
+          "descriptions": ["생년월일과 위치 기반으로 사주 산출 플랫폼 개발"]
+        },
+        {
+          "title": "친절한 영어교실",
+          "stack": "React, Styled-Components, Redux",
+          "descriptions": [
+            "고령층을 위한 영어 강의 플랫폼 개발",
+            "사용 연령층이 고령층인 만큼 글자 크기를 크게 조정하고, 서비스 이용 단계를 최소화하여 <strong>접근 편의성 고려</strong>",
+            "계좌이체 및 해외 결제 기능 구현"
+          ]
+        },
+        {
+          "title": "Smart Keeper",
+          "stack": "React, Styled-Components, Redux",
+          "descriptions": [
+            "보안 제품을 판매하는 회사의 소개 사이드 개발",
+            "<strong>반복되는 코드를 유틸 함수로 관리</strong>하여 팀 전체의 생산성 향상"
+          ]
+        }
+      ]
+    }
+  ]
+}

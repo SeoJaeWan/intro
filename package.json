@@ -9,13 +9,17 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "body-scroll-lock": "^4.0.0-beta.0",
     "next": "15.1.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "styled-components": "^6.1.13"
+    "react-icons": "^5.4.0",
+    "styled-components": "^6.1.13",
+    "zustand": "^5.0.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@types/body-scroll-lock": "^3.1.2",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
@@ -29,6 +33,9 @@
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "eslint --cache --fix",
+      "prettier --cache --write"
+    ],
+    "*.{json,md,yml}": [
       "prettier --cache --write"
     ]
   }

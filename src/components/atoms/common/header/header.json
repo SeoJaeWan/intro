@@ -1,0 +1,12 @@
+{
+  "route": [
+    {
+      "name": "Experience",
+      "path": "/experience"
+    },
+    {
+      "name": "Lab",
+      "path": "/lab"
+    }
+  ]
+}

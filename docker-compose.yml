@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  intro:
+    image: sjw7324/intro:latest
+    container_name: intro
+    restart: unless-stopped
+    ports:
+      - '3003:3003'
+    environment:
+      - NODE_ENV=production
+    networks:
+      - shared_network
+
+networks:
+  shared_network:
+    external: true
