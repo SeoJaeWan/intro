@@ -28,6 +28,7 @@ const HeroTitle = () => {
 
   useEffect(() => {
     if (!isRootAnimation) return;
+    window.scrollTo(0, 0);
 
     const interval = setTimeout(() => {
       const step = () => {
@@ -53,6 +54,7 @@ const HeroTitle = () => {
     fixedViewRef.current = setInterval(() => {
       fixedView();
     }, 500);
+    fixedView();
 
     return () => {
       clearInterval(fixedViewRef.current);
