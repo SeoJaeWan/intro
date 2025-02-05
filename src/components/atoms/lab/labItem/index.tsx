@@ -7,6 +7,7 @@ interface LabItemProps {
   thumbnail: string;
   link: string;
   isBlock: boolean;
+  index: number;
 }
 
 const block = [
@@ -23,10 +24,10 @@ const block = [
 ] as const;
 
 const LabItem = (props: LabItemProps) => {
-  const { title, thumbnail, link, isBlock } = props;
+  const { title, thumbnail, link, isBlock, index } = props;
 
   return (
-    <LabItemStyle.Container $isBlock={isBlock}>
+    <LabItemStyle.Container $isBlock={isBlock} $index={index}>
       <Link href={link}>
         <LabItemStyle.Box>
           <h3 className="a11y">{title}</h3>

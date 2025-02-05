@@ -108,7 +108,7 @@ interface BlockLineItemProps {
 
 const BlockLineItem = styled.div<BlockLineItemProps>`
   width: auto;
-  height: 40%;
+  height: 100%;
 
   aspect-ratio: 1/4;
 
@@ -135,7 +135,18 @@ const BlockText = styled.p`
 
 interface ContainerProps {
   $isBlock: boolean;
+  $index: number;
 }
+
+const LabItemAni = keyframes`
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+`;
 
 const Container = styled.li<ContainerProps>`
   display: flex;
@@ -145,6 +156,9 @@ const Container = styled.li<ContainerProps>`
   height: 100%;
 
   aspect-ratio: 5/3;
+
+  opacity: 0;
+  animation: ${LabItemAni} 1.5s ${(props) => (props.$index + 1) * 0.5}s forwards;
 
   ${(props) =>
     props.$isBlock

@@ -15,7 +15,9 @@ const LabTemplate = () => {
 
       <LabStyle.LabList>
         {isRootAnimation &&
-          list.map((item) => <LabItem {...item} key={item.title} />)}
+          list.map((item, index) => (
+            <LabItem {...item} key={item.title} index={index} />
+          ))}
       </LabStyle.LabList>
     </LabStyle.Container>
   );
