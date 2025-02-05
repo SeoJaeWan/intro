@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import LabItemStyle from './labItem.style';
 import Link from 'next/link';
-import { Fragment } from 'react';
 
 interface LabItemProps {
   title: string;
@@ -26,17 +25,21 @@ const block = [
 const LabItem = (props: LabItemProps) => {
   const { title, thumbnail, link, isBlock } = props;
 
-  const BoxWrap = isBlock ? Fragment : Link;
-
   return (
     <LabItemStyle.Container $isBlock={isBlock}>
-      <BoxWrap href={link}>
+      <Link href={link}>
         <LabItemStyle.Box>
           <h3 className="a11y">{title}</h3>
-          <Image src={thumbnail} alt="" width={2000} height={1200} />
+          <Image
+            src={thumbnail}
+            alt=""
+            width={2000}
+            height={1200}
+            priority={true}
+          />
           <LabItemStyle.Title aria-hidden>{title}</LabItemStyle.Title>
         </LabItemStyle.Box>
-      </BoxWrap>
+      </Link>
 
       <LabItemStyle.Block>
         <LabItemStyle.BlockText>아직 작성중이에요</LabItemStyle.BlockText>
