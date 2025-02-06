@@ -11,7 +11,7 @@ const LabTemplate = () => {
 
   return (
     <LabStyle.Container>
-      <h2 className="a11y">실험실</h2>
+      <h2 className="a11y">Lab</h2>
 
       <LabStyle.LabList>
         {isRootAnimation &&
