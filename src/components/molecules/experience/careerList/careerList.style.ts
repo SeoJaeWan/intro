@@ -6,7 +6,7 @@ const Container = styled(Section)`
   padding-bottom: 80px;
 `;
 
-const Title = styled.h2`
+const Title = styled.h3`
   display: inline-block;
   font-size: ${(props) => props.theme.font(14)};
 `;
