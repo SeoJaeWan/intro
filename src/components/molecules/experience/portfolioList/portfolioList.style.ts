@@ -13,7 +13,7 @@ const Container = styled(Section)`
   padding-bottom: 5vh;
 `;
 
-const Title = styled.h2`
+const Title = styled.h3`
   font-size: ${(props) => props.theme.font(18)};
 `;
 

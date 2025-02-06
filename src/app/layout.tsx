@@ -8,7 +8,6 @@ const pretendard = localFont({
   weight: '45 920',
   variable: '--font-pretendard',
 });
-
 const notoMono = localFont({
   src: './fonts/RobotoMono-VariableFont_wght.ttf',
   display: 'swap',
