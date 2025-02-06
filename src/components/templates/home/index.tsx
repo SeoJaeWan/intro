@@ -16,7 +16,7 @@ const HomeTemplate = () => {
   }, []);
 
   const handleNewTab = () => {
-    const newWindow = window.open('http://192.168.0.72:3000', '_blank');
+    const newWindow = window.open('http://119.201.242.142:3003', '_blank');
 
     if (newWindow) {
       // 새 창이 로드될 때 메시지를 보냄
