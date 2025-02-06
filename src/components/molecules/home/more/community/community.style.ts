@@ -71,6 +71,8 @@ const MainBox = styled.span`
   position: relative;
   z-index: 1;
 
+  display: inline-block;
+
   margin-left: 25px;
 
   box-shadow:
@@ -83,10 +85,6 @@ const MainBox = styled.span`
 
   opacity: 0;
   transform: translateY(-200px);
-
-  &.show {
-    animation: ${mainBoxAni} 0.4s ease-in-out forwards;
-  }
 `;
 
 const SubBoxAni = keyframes`
@@ -105,6 +103,8 @@ const SubBox = styled.span`
   position: relative;
   z-index: 2;
 
+  display: inline-block;
+
   box-shadow:
     0 0 10px rgba(93, 158, 255, 0.8),
     0 0 20px rgba(93, 158, 255, 0.6),
@@ -115,24 +115,20 @@ const SubBox = styled.span`
 
   transform: translate(-30%, -50%);
   opacity: 0;
-
-  &.show {
-    animation: ${SubBoxAni} 0.4s ease-in-out forwards;
-  }
 `;
 
 const SecondaryBoxAni = keyframes`
     0% {
-        transform: translate(-40%, -80px) rotate(110deg);
+        transform: translate(-30%, -80px) rotate(110deg);
         opacity: 0;
     }
 
     80% {
-        transform: translate(-40%, 0) rotate(-.5deg);
+        transform: translate(-30%, 0) rotate(-.5deg);
     }
 
     100% {
-        transform: translate(-40%, 0) rotate(10deg);
+        transform: translate(-30%, 0) rotate(10deg);
         opacity: 1;
     }
 `;
@@ -140,6 +136,8 @@ const SecondaryBoxAni = keyframes`
 const SecondaryBox = styled.span`
   position: relative;
   z-index: 1;
+
+  display: inline-block;
 
   box-shadow:
     0 0 10px rgba(57, 255, 20, 0.8),
@@ -151,9 +149,25 @@ const SecondaryBox = styled.span`
 
   transform: translate(-40%, -80px) rotate(110deg);
   opacity: 0;
+`;
+
+const PopBox = styled.span`
+  display: block;
+
+  padding-bottom: 30px;
 
   &.show {
-    animation: ${SecondaryBoxAni} 0.6s ease-in-out forwards;
+    ${MainBox} {
+      animation: ${mainBoxAni} 0.4s ease-in-out forwards;
+    }
+
+    ${SubBox} {
+      animation: ${SubBoxAni} 0.4s ease-in-out forwards;
+    }
+
+    ${SecondaryBox} {
+      animation: ${SecondaryBoxAni} 0.6s ease-in-out forwards;
+    }
   }
 `;
 
@@ -213,6 +227,7 @@ const CommunityStyle = {
   MainBox,
   SubBox,
   SecondaryBox,
+  PopBox,
   HandImage,
 };
 
