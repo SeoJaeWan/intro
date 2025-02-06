@@ -1,8 +1,6 @@
 import StyledComponentsRegistry from '@/style/lib/registry';
 import Theme from '@/style/lib/theme';
 import localFont from 'next/font/local';
-import Layout from '@/components/atoms/common/layout';
-import Header from '@/components/atoms/common/header';
 
 const pretendard = localFont({
   src: './fonts/PretendardVariable.woff2',
@@ -28,8 +26,10 @@ export default function RootLayout({
       <body className={`${pretendard.variable} ${notoMono.variable}`}>
         <StyledComponentsRegistry>
           <Theme>
-            <Header />
-            <Layout>{children}</Layout>
+            {/* <Header /> */}
+            {/* <Layout> */}
+            {children}
+            {/* </Layout> */}
           </Theme>
         </StyledComponentsRegistry>
       </body>
