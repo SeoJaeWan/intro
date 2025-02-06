@@ -39,19 +39,6 @@ const Header = () => {
     }
   };
 
-  const handleNewTab = () => {
-    const newWindow = window.open('http://192.168.0.72:3000', '_blank');
-
-    if (newWindow) {
-      // 새 창이 로드될 때 메시지를 보냄
-      const sendMessage = () => {
-        newWindow.postMessage({ text: 'hello' }, '*');
-      };
-
-      newWindow.onload = sendMessage; // 창이 완전히 로드된 후 메시지 전송
-    }
-  };
-
   useEffect(() => {
     const handleResize = () => {
       const mobile = parseInt(media.mobile, 10);
@@ -90,8 +77,6 @@ const Header = () => {
           />
         </Link>
       </HeaderStyle.Logo>
-
-      <button onClick={handleNewTab}>test</button>
 
       <HeaderStyle.NavList>
         <ul>
