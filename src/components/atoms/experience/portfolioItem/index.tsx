@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { FaGithub, FaPlay } from 'react-icons/fa6';
 import { ImBlogger2 } from 'react-icons/im';
 import { fixedView, unfixedView } from '@/utils/fixedView';
+import useLockField from '@/hooks/useLockField';
 
 interface PortfolioItemProps {
   index: number;
@@ -29,6 +30,8 @@ const PortfolioItem = (props: PortfolioItemProps) => {
   const itemRef = useRef<HTMLDivElement>(null);
   const detailRef = useRef<HTMLDivElement>(null);
   const fixedViewRef = useRef<NodeJS.Timeout>(undefined);
+  const { fieldRef, rollbackRef, handleLockField, handleUnlockField } =
+    useLockField<HTMLLIElement, HTMLButtonElement>();
 
   const [previewDetail, setPreviewDetail] = useState({
     x: 0,
@@ -64,10 +67,13 @@ const PortfolioItem = (props: PortfolioItemProps) => {
     fixedViewRef.current = setInterval(() => {
       fixedView();
     }, 500);
+
+    handleLockField();
   };
 
   const handleInactive = () => {
     itemRef.current!.classList.add('close');
+    handleUnlockField();
   };
 
   useEffect(() => {
@@ -100,9 +106,15 @@ const PortfolioItem = (props: PortfolioItemProps) => {
       $currentIndex={currentIndex}
       $active={active}
       aria-hidden={currentIndex === -1}
+      ref={fieldRef}
     >
       <h3 className="a11y">{item.title}</h3>
-      {active && <PortfolioItemStyle.Overlay onClick={handleInactive} />}
+      {active && (
+        <PortfolioItemStyle.Overlay
+          ref={rollbackRef}
+          onClick={handleInactive}
+        />
+      )}
       <PortfolioItemStyle.Preview
         $currentIndex={currentIndex}
         $prevIndex={prevIndex}
