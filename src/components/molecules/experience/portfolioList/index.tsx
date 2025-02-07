@@ -3,8 +3,9 @@
 import Information from '@/components/atoms/common/information';
 import PortfolioListStyle from './portfolioList.style';
 import data from './portfolioList.json';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import PortfolioItem from '@/components/atoms/experience/portfolioItem';
+import useAnimation from '@/store/animation';
 
 const { list } = data;
 
@@ -41,6 +42,10 @@ const PortfolioList = () => {
   const [prevList, setPrevList] = useState<Portfolio[]>(
     getRenderList(selectCategories),
   );
+  const { isRootAnimation } = useAnimation();
+
+  const delay = useMemo(() => (isRootAnimation ? 0 : 2), []);
+
   const [categoryAnimationEnd, setCategoryAnimationEnd] = useState(0);
 
   const handleSelectCategory = (category: string) => {
@@ -70,7 +75,7 @@ const PortfolioList = () => {
   return (
     <PortfolioListStyle.Container>
       <PortfolioListStyle.Title>
-        <Information delay={2}>PORTFOLIO</Information>
+        <Information delay={delay}>PORTFOLIO</Information>
       </PortfolioListStyle.Title>
 
       <PortfolioListStyle.CategoryList>
@@ -79,6 +84,7 @@ const PortfolioList = () => {
             <PortfolioListStyle.CategoryButton
               $active={selectCategories.includes(category)}
               $index={index}
+              $delay={delay + 0.5}
               onClick={() => handleSelectCategory(category)}
               onAnimationEnd={handleCategoryAnimationEndCount}
             >

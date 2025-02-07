@@ -32,6 +32,7 @@ const CategoryList = styled.ul`
 interface CategoryButtonProps {
   $active: boolean;
   $index: number;
+  $delay: number;
 }
 
 const showCategoryAni = keyframes`
@@ -62,7 +63,7 @@ const CategoryButton = styled.button<CategoryButtonProps>`
   opacity: 0;
 
   animation: ${showCategoryAni} 0.5s ease
-    ${(props) => 2.5 + props.$index * 0.1}s forwards;
+    ${(props) => props.$delay + props.$index * 0.1}s forwards;
 
   cursor: pointer;
 
