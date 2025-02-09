@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://seojaewan.com
+
+# Sitemaps
+Sitemap: https://seojaewan.com/sitemap.xml

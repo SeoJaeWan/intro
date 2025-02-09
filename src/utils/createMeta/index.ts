@@ -12,12 +12,12 @@ const createMeta = ({
   title: `NEU${title}`,
   description,
   keywords: '프론트엔드, 프로그래밍, 개발, 포트폴리오, 서재완, React, Next.js',
-  //   verification: {
-  //     google: 'xDw6n-eYm5QL9k9bksfKbS7_HgYWxkLNr2dj-cQ3Eeo',
-  //     other: {
-  //       'naver-site-verification': '0fc31dc1e75cc9e80987a315848e2045322fc792',
-  //     },
-  //   },
+  verification: {
+    google: 'xDw6n-eYm5QL9k9bksfKbS7_HgYWxkLNr2dj-cQ3Eeo',
+    other: {
+      'naver-site-verification': '97b412d0cd322b753727cba1112cef71ca195bc8',
+    },
+  },
   openGraph: {
     title: `NEU${title}`,
     description,
