@@ -2,7 +2,7 @@ import HomeTemplate from '@/components/templates/home';
 import createMeta from '@/utils/createMeta';
 
 export const metadata = createMeta({
-  title: ' : SeoJaeWan',
+  title: ' : 서재완',
   description: '업데이트 되는 프론트엔드 개발자.',
 });
 
