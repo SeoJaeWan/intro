@@ -22,13 +22,13 @@ const createMeta = ({
     title: `NEU${title}`,
     description,
     type: 'website',
-    images: { url: `${client}/assets/common/ogimage.png` },
+    images: { url: `${client}/assets/common/og-image.png` },
   },
   twitter: {
     title: `NEU${title}`,
     description,
     card: 'summary_large_image',
-    images: { url: `${client}/assets/common/ogimage.png` },
+    images: { url: `${client}/assets/common/og-image.png` },
   },
 
   applicationName: 'NEU',
