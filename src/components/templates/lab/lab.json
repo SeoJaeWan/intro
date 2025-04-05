@@ -4,7 +4,22 @@
       "title": "CSS Scroll Animation",
       "thumbnail": "/assets/images/lab/scrollView.png",
       "link": "#",
-      "isBlock": true
+      "isBlock": true,
+      "ref": "https://tympanus.net/codrops/2024/01/17/a-practical-introduction-to-scroll-driven-animations-with-css-scroll-and-view/"
+    },
+    {
+      "title": "WebOTP API",
+      "thumbnail": "/assets/images/lab/webOtp.webp",
+      "link": "#",
+      "isBlock": true,
+      "ref": "https://developer.mozilla.org/en-US/docs/Web/API/WebOTP_API"
+    },
+    {
+      "title": "View Transitions API",
+      "thumbnail": "/assets/images/lab/viewTransitions.webp",
+      "link": "#",
+      "isBlock": true,
+      "ref": "https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API"
     }
   ]
 }
